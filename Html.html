@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Magical Athlete — มหกรรมกีฬาเวทมนตร์</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js" onerror="window.__PEER_FAIL=true"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg1:#06031a; --bg2:#130931; --gold:#ffd36e; --cyan:#57d9ff; --mag:#ff5f95;
+  --grn:#7bf5a5; --pur:#c390ff; --org:#ffa55c;
+  --line:rgba(255,255,255,.16); --txt:#f5efff; --dim:#b4a8db;
+  --fs:clamp(11px,1.5vmin,15px); --r:18px;
+}
+html,body{height:100%;overflow:hidden}
+body{
+  font-family:"Noto Sans Thai","Segoe UI",system-ui,-apple-system,sans-serif;
+  background:radial-gradient(ellipse at 50% -18%,#4f2199 0%,var(--bg2) 44%,var(--bg1) 100%);
+  color:var(--txt);font-size:var(--fs);line-height:1.5;font-weight:600;
+  height:100dvh;width:100vw;overflow:hidden;position:fixed;inset:0}
+/* ============ BACKGROUND ============ */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.sky{position:absolute;inset:0;background:
+ radial-gradient(circle at 13% 17%,rgba(255,95,149,.22),transparent 43%),
+ radial-gradient(circle at 87% 11%,rgba(87,217,255,.2),transparent 45%),
+ radial-gradient(circle at 50% 105%,rgba(195,144,255,.27),transparent 58%)}
+.stars{position:absolute;inset:0;opacity:.6;animation:tw 5s ease-in-out infinite alternate;background-image:
+ radial-gradient(1.6px 1.6px at 10% 12%,#fff,transparent),
+ radial-gradient(1.6px 1.6px at 31% 26%,#ffe9a8,transparent),
+ radial-gradient(1.1px 1.1px at 56% 8%,#bfe9ff,transparent),
+ radial-gradient(1.6px 1.6px at 73% 30%,#fff,transparent),
+ radial-gradient(1.1px 1.1px at 88% 17%,#ffd1e8,transparent),
+ radial-gradient(1.1px 1.1px at 44% 41%,#fff,transparent),
+ radial-gradient(1.6px 1.6px at 66% 54%,#cfe,transparent),
+ radial-gradient(1.1px 1.1px at 21% 61%,#fff,transparent)}
+@keyframes tw{from{opacity:.3}to{opacity:.82}}
+.aurora{position:absolute;left:-25%;right:-25%;top:-32%;height:82%;filter:blur(64px);opacity:.4;
+ background:conic-gradient(from 90deg at 50% 50%,rgba(87,217,255,.5),rgba(255,95,149,.45),rgba(195,144,255,.5),rgba(87,217,255,.5));
+ animation:aur 28s linear infinite}
+@keyframes aur{to{transform:rotate(360deg) scale(1.15)}}
+.spot{position:absolute;top:-10%;width:23vw;height:125vh;transform-origin:50% 0;opacity:.14;filter:blur(18px);
+ background:linear-gradient(180deg,rgba(255,255,255,.8),transparent 70%)}
+.spot.a{left:11%;animation:sw1 9s ease-in-out infinite alternate}
+.spot.b{right:11%;animation:sw2 11s ease-in-out infinite alternate}
+@keyframes sw1{from{transform:rotate(-17deg)}to{transform:rotate(15deg)}}
+@keyframes sw2{from{transform:rotate(16deg)}to{transform:rotate(-14deg)}}
+.crowd{position:absolute;left:0;right:0;bottom:0;height:19%;opacity:.9;animation:cr 3.6s ease-in-out infinite alternate;
+ background:repeating-radial-gradient(circle at 12px 18px,rgba(5,2,20,.96) 0 9px,transparent 9px 22px)}
+.crowd2{position:absolute;left:0;right:0;bottom:5%;height:16%;opacity:.68;animation:cr 4.6s .4s ease-in-out infinite alternate;
+ background:repeating-radial-gradient(circle at 20px 14px,rgba(46,19,106,.92) 0 8px,transparent 8px 26px)}
+@keyframes cr{from{transform:translateY(0)}to{transform:translateY(-7px)}}
+.banner{position:absolute;top:0;width:46px;height:74px;opacity:.4;animation:sway 4s ease-in-out infinite alternate;
+ clip-path:polygon(0 0,100% 0,100% 78%,50% 100%,0 78%)}
+@keyframes sway{from{transform:rotate(-3.5deg)}to{transform:rotate(3.5deg)}}
+.particle{position:absolute;border-radius:50%;filter:blur(1px);opacity:.5;animation:flo linear infinite}
+@keyframes flo{0%{transform:translateY(30px) scale(.5);opacity:0}18%{opacity:.75}82%{opacity:.5}100%{transform:translateY(-80vh) scale(1.25);opacity:0}}
+/* ============ SHELL ============ */
+#app{position:relative;z-index:2;height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+#topbar{flex:0 0 auto;display:flex;align-items:center;gap:6px;padding:6px 10px;backdrop-filter:blur(12px);
+ background:linear-gradient(180deg,rgba(14,5,42,.95),rgba(14,5,42,.4));border-bottom:1px solid var(--line);
+ box-shadow:0 6px 26px rgba(0,0,0,.45)}
+#logo{font-weight:900;font-size:1.1em;white-space:nowrap;
+ background:linear-gradient(92deg,var(--gold),var(--mag) 45%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 2px 10px rgba(255,95,149,.4))}
+.chip{padding:3px 10px;border-radius:999px;font-size:.88em;white-space:nowrap;display:flex;align-items:center;gap:5px;
+ background:linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.05));border:1px solid var(--line);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.22)}
+.chip b{color:var(--gold);letter-spacing:3px;font-weight:900}
+.spacer{flex:1}
+.iconbtn{position:relative;width:32px;height:32px;border-radius:11px;border:1px solid var(--line);color:var(--txt);cursor:pointer;
+ background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.05));font-size:1em;display:flex;align-items:center;justify-content:center;
+ transition:.16s;box-shadow:0 3px 10px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.iconbtn:hover{background:rgba(255,255,255,.25);transform:translateY(-2px)}
+.iconbtn.off{opacity:.36}
+.iconbtn.off::after{content:"";position:absolute;width:21px;height:2px;background:#ff8fa6;transform:rotate(-40deg)}
+main{flex:1 1 auto;position:relative;min-height:0;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;flex-direction:column;padding:8px;gap:8px;min-height:0;overflow:hidden}
+.screen.active{display:flex;animation:fade .4s cubic-bezier(.2,.8,.3,1)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel{position:relative;border-radius:var(--r);backdrop-filter:blur(14px);
+ background:linear-gradient(158deg,rgba(255,255,255,.13),rgba(255,255,255,.035));border:1px solid var(--line);
+ box-shadow:0 14px 38px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.22),inset 0 -14px 30px rgba(0,0,0,.18)}
+.pad{padding:9px 12px}
+.btn{position:relative;padding:11px 17px;border-radius:14px;border:1px solid rgba(255,255,255,.3);cursor:pointer;overflow:hidden;
+ font-weight:900;font-size:1em;color:#26103f;font-family:inherit;transition:.16s;
+ background:linear-gradient(180deg,#ffeec0,var(--gold) 55%,#eab242);
+ box-shadow:0 8px 20px rgba(255,211,110,.3),inset 0 1px 0 rgba(255,255,255,.75),inset 0 -3px 0 rgba(0,0,0,.14)}
+.btn::after{content:"";position:absolute;inset:0;transform:translateX(-130%);transition:.55s;
+ background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.55) 50%,transparent 58%)}
+.btn:hover::after{transform:translateX(130%)}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.btn:active{transform:translateY(1px)}
+.btn.sec{color:var(--txt);background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.07));
+ box-shadow:0 6px 16px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.28)}
+.btn.cy{color:#052737;background:linear-gradient(180deg,#d4f4ff,var(--cyan) 55%,#2ba8d8)}
+.btn.mg{color:#3d0a20;background:linear-gradient(180deg,#ffd0e0,var(--mag) 55%,#d93a70)}
+.btn.big{padding:13px 26px;font-size:1.1em;border-radius:16px}
+.btn:disabled{opacity:.38;cursor:not-allowed;transform:none;filter:grayscale(.6)}
+input{padding:11px 13px;border-radius:13px;border:1px solid var(--line);background:rgba(0,0,0,.34);color:var(--txt);
+ font-size:1em;font-family:inherit;width:100%;outline:none;font-weight:700}
+input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(87,217,255,.2)}
+h2{font-size:1.25em;font-weight:900}
+h3{font-size:1em;color:var(--gold);font-weight:900}
+.dim{color:var(--dim);font-weight:600}
+.hint{font-size:.83em;color:var(--dim);font-weight:600}
+.sc-y{overflow-y:auto;overscroll-behavior:contain;min-height:0}
+.sc-x{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.sc-y::-webkit-scrollbar,.sc-x::-webkit-scrollbar{width:6px;height:6px}
+.sc-y::-webkit-scrollbar-thumb,.sc-x::-webkit-scrollbar-thumb{background:linear-gradient(90deg,var(--cyan),var(--mag));border-radius:9px}
+.dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 10px currentColor,inset 0 -2px 3px rgba(0,0,0,.35)}
+.tag{font-size:.78em;padding:1px 8px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid var(--line);font-weight:700}
+.tag.off{background:rgba(255,80,110,.24);border-color:rgba(255,110,140,.6);color:#ffd2dc}
+.tag.gd{background:rgba(255,211,110,.22);border-color:rgba(255,211,110,.6);color:#ffe9b8}
+.hdrrow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+/* ============ MENU ============ */
+#sc-menu{align-items:center;justify-content:center}
+.menu-wrap{width:min(580px,100%);max-height:100%;padding:16px;display:flex;flex-direction:column;gap:10px;text-align:center}
+.title-big{font-size:clamp(23px,5.3vmin,44px);font-weight:900;line-height:1.08;background-size:230% 100%;
+ background-image:linear-gradient(92deg,var(--gold),#fff 25%,var(--mag) 55%,var(--cyan) 80%,var(--gold));
+ -webkit-background-clip:text;background-clip:text;color:transparent;
+ filter:drop-shadow(0 5px 18px rgba(255,95,149,.5));animation:sheen 7s linear infinite}
+@keyframes sheen{to{background-position:230% 0}}
+.torch{font-size:1.6em;display:inline-block;animation:bob 2.4s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-6px) rotate(6deg)}}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.menu-grid .full{grid-column:1/-1}
+.stepper{display:flex;align-items:center;gap:9px;justify-content:center}
+.stepper button{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);cursor:pointer;color:var(--txt);font-size:1.25em;font-weight:900;
+ background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.05))}
+.stepper b{min-width:2.1em;font-size:1.6em;color:var(--gold);font-weight:900;text-shadow:0 0 16px rgba(255,211,110,.6)}
+/* ============ LOBBY ============ */
+.codebox{font-size:clamp(30px,8.4vmin,58px);font-weight:900;letter-spacing:.2em;color:var(--gold);
+ text-shadow:0 0 28px rgba(255,211,110,.6),0 3px 0 rgba(0,0,0,.35)}
+.plist{display:flex;flex-direction:column;gap:6px;padding:9px}
+.prow{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;border:1px solid var(--line);
+ background:linear-gradient(120deg,rgba(255,255,255,.1),rgba(0,0,0,.18))}
+/* ============ CARDS ============ */
+.grid-cards{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(134px,1fr));align-content:start}
+.card{position:relative;border-radius:16px;padding:9px;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;gap:2px;
+ background:linear-gradient(158deg,rgba(255,255,255,.17),rgba(255,255,255,.045));border:1px solid var(--line);
+ transition:transform .2s cubic-bezier(.2,.9,.3,1.4),box-shadow .2s,border-color .2s;
+ box-shadow:0 10px 24px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.26)}
+.card::before{content:"";position:absolute;inset:-40% -60% auto auto;width:130%;height:130%;border-radius:50%;pointer-events:none;
+ background:radial-gradient(circle,var(--cc,rgba(255,211,110,.35)),transparent 62%);opacity:.5}
+.card:hover{transform:translateY(-5px) scale(1.03);border-color:var(--cc,var(--gold));
+ box-shadow:0 18px 34px rgba(0,0,0,.5),0 0 22px var(--cc,rgba(255,211,110,.4))}
+.card.sel{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold),0 14px 30px rgba(255,211,110,.34)}
+.card.dis{opacity:.3;pointer-events:none;filter:grayscale(.8)}
+.card .ava{font-size:2em;line-height:1.05;filter:drop-shadow(0 4px 8px rgba(0,0,0,.55))}
+.card .cname{font-weight:900;font-size:.97em}
+.card .cdesc{font-size:.79em;color:var(--dim);line-height:1.33;font-weight:600}
+.power{display:flex;gap:2px;margin-top:2px}
+.power i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18)}
+.power i.on{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+.miniteam{display:flex;gap:4px;flex-wrap:wrap}
+.mini{width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1em;
+ background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(0,0,0,.28));border:1px solid var(--line)}
+.mini.used{opacity:.26;filter:grayscale(1)}
+.split{display:grid;grid-template-columns:1fr 240px;gap:8px;flex:1;min-height:0}
+@media(max-width:800px){.split{grid-template-columns:1fr;grid-template-rows:1fr auto}}
+/* ============ SELECT (4 big cards, no scroll) ============ */
+#selPool{flex:1 1 auto;min-height:0;display:grid;gap:9px;padding:9px;
+ grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)}
+@media(min-width:880px){#selPool{grid-template-columns:repeat(4,1fr);grid-template-rows:1fr}}
+.selcard{position:relative;border-radius:18px;padding:10px;cursor:pointer;overflow:hidden;min-height:0;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;
+ background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.04));border:1.5px solid var(--line);
+ transition:transform .2s cubic-bezier(.2,.9,.3,1.4),box-shadow .2s,border-color .2s;
+ box-shadow:0 12px 30px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.26)}
+.selcard::before{content:"";position:absolute;inset:auto -30% -55% -30%;height:120%;border-radius:50%;pointer-events:none;
+ background:radial-gradient(circle,var(--cc,rgba(255,211,110,.4)),transparent 64%);opacity:.55}
+.selcard>*{position:relative;z-index:1}
+.selcard:hover{transform:translateY(-5px) scale(1.02);border-color:var(--cc);box-shadow:0 20px 38px rgba(0,0,0,.5),0 0 28px var(--cc)}
+.selcard.sel{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold),0 16px 34px rgba(255,211,110,.35);transform:translateY(-4px)}
+.selcard.dis{opacity:.28;pointer-events:none;filter:grayscale(.85)}
+.selcard .ava{font-size:clamp(28px,6.5vmin,58px);line-height:1;filter:drop-shadow(0 5px 12px rgba(0,0,0,.6))}
+.selcard .cname{font-weight:900;font-size:clamp(13px,2.2vmin,20px)}
+.selcard .cdesc{font-size:clamp(10px,1.65vmin,14px);color:#ded4ff;line-height:1.35;font-weight:600;overflow:hidden}
+.selcard .lockbadge{position:absolute;top:7px;right:9px;font-size:.8em;color:var(--gold);font-weight:900;z-index:2}
+.selcard .usedtag{font-size:.8em;color:#ff9db3;font-weight:800}
+.selstatus{display:flex;gap:6px;align-items:center}
+.sbadge{display:flex;align-items:center;gap:4px;padding:3px 9px;border-radius:999px;font-size:.82em;white-space:nowrap;flex:0 0 auto;
+ border:1px solid var(--line);background:rgba(0,0,0,.25);font-weight:700}
+.sbadge.ok{border-color:var(--grn);background:rgba(123,245,165,.16);color:#d6ffe6}
+/* ============ RACE BOARD (serpentine) ============ */
+#sc-race{padding:7px;gap:7px}
+.race-top{display:flex;gap:6px;align-items:center;flex:0 0 auto}
+.turnstrip{display:flex;gap:5px;flex:1;padding:1px 1px 5px}
+.tchip{display:flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:.84em;white-space:nowrap;flex:0 0 auto;
+ background:linear-gradient(150deg,rgba(255,255,255,.12),rgba(0,0,0,.25));border:1px solid var(--line);transition:.25s;font-weight:700}
+.tchip.cur{background:linear-gradient(90deg,rgba(255,211,110,.45),rgba(255,95,149,.3));border-color:var(--gold);
+ box-shadow:0 0 18px rgba(255,211,110,.5);transform:scale(1.06)}
+.tchip.fin{opacity:.45}
+.tchip .num{font-size:.85em;opacity:.6}
+#boardWrap{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;padding:8px;overflow:hidden}
+#board{position:relative;--cell:44px}
+.trackpath{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.p-outer{fill:none;stroke:rgba(0,0,0,.45);stroke-width:.74;stroke-linecap:round;stroke-linejoin:round}
+.p-mid{fill:none;stroke:rgba(255,255,255,.09);stroke-width:.6;stroke-linecap:round;stroke-linejoin:round}
+.p-flow{fill:none;stroke:url(#tg);stroke-width:.2;stroke-linecap:round;stroke-linejoin:round;opacity:.9;
+ stroke-dasharray:.32 .55;animation:flow 2.4s linear infinite;filter:drop-shadow(0 0 3px rgba(87,217,255,.9))}
+@keyframes flow{to{stroke-dashoffset:-.87}}
+.cells{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(5,1fr)}
+.cell{position:relative;margin:7%;border-radius:22%;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(8,3,28,.55));border:1px solid rgba(255,255,255,.14);
+ box-shadow:inset 0 2px 8px rgba(0,0,0,.45),0 3px 8px rgba(0,0,0,.3)}
+.cell .cnum{position:absolute;top:4%;left:8%;font-size:calc(var(--cell)*.2);color:rgba(255,255,255,.34);font-weight:900;line-height:1}
+.cell .cico{font-size:calc(var(--cell)*.34);filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.cell .clabel{position:absolute;bottom:5%;left:0;right:0;text-align:center;font-size:calc(var(--cell)*.17);font-weight:900;letter-spacing:.5px}
+.cell.start{border-color:rgba(123,245,165,.7);background:linear-gradient(160deg,rgba(123,245,165,.3),rgba(8,3,28,.55));
+ box-shadow:inset 0 2px 8px rgba(0,0,0,.4),0 0 18px rgba(123,245,165,.4)}
+.cell.start .clabel{color:#c9ffe0}
+.cell.finish{border-color:rgba(255,211,110,.85);box-shadow:inset 0 2px 8px rgba(0,0,0,.4),0 0 26px rgba(255,211,110,.55);
+ background:repeating-conic-gradient(rgba(255,255,255,.85) 0 25%,rgba(20,8,40,.9) 0 50%) 0 0/50% 50%}
+.cell.finish .clabel{color:#ffe9b8;text-shadow:0 1px 3px #000}
+.cell.finish .cico{text-shadow:0 2px 6px #000}
+.cell.sp-star{border-color:rgba(255,211,110,.7);background:linear-gradient(160deg,rgba(255,211,110,.28),rgba(8,3,28,.55));animation:spp 2.2s ease-in-out infinite}
+.cell.sp-trip{border-color:rgba(255,95,149,.7);background:linear-gradient(160deg,rgba(255,95,149,.26),rgba(8,3,28,.55));animation:spp 2.2s ease-in-out infinite}
+.cell.sp-fwd{border-color:rgba(87,217,255,.7);background:linear-gradient(160deg,rgba(87,217,255,.26),rgba(8,3,28,.55))}
+.cell.sp-back{border-color:rgba(195,144,255,.7);background:linear-gradient(160deg,rgba(195,144,255,.26),rgba(8,3,28,.55))}
+@keyframes spp{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
+.toks{position:absolute;inset:0;pointer-events:none}
+.tok{position:absolute;width:calc(var(--cell)*.5);height:calc(var(--cell)*.5);border-radius:50%;
+ display:flex;align-items:center;justify-content:center;font-size:calc(var(--cell)*.26);
+ border:2px solid rgba(255,255,255,.92);left:0;top:0;
+ transform:translate(-50%,-50%) scale(var(--ts,1)) rotate(var(--rot,0deg));
+ transition-property:left,top,box-shadow;transition-duration:120ms;transition-timing-function:linear;
+ box-shadow:0 4px 12px rgba(0,0,0,.65),0 0 12px var(--pc,#fff),inset 0 -3px 6px rgba(0,0,0,.35)}
+.tok::after{content:"";position:absolute;inset:-8px;border-radius:50%;border:2px solid var(--sc,var(--gold));opacity:0;pointer-events:none}
+.tok.cast{box-shadow:0 4px 12px rgba(0,0,0,.6),0 0 0 3px var(--sc,var(--gold)),0 0 34px 11px var(--sc,var(--gold));z-index:30!important}
+.tok.cast::after{animation:aura .85s ease-out 2}
+@keyframes aura{0%{opacity:.95;transform:scale(.5)}100%{opacity:0;transform:scale(2.3)}}
+.tok.hit{animation:hitx .55s ease}
+@keyframes hitx{0%,100%{transform:translate(-50%,-50%) scale(var(--ts,1))}
+ 22%{transform:translate(-64%,-50%) scale(var(--ts,1)) rotate(-16deg)}
+ 50%{transform:translate(-36%,-50%) scale(var(--ts,1)) rotate(14deg)}
+ 76%{transform:translate(-56%,-50%) scale(var(--ts,1)) rotate(-7deg)}}
+.tok.trip{--rot:76deg;filter:grayscale(.5) brightness(.85)}
+.tok.fin{animation:winpop .9s ease}
+@keyframes winpop{0%{transform:translate(-50%,-50%) scale(var(--ts,1))}45%{transform:translate(-50%,-50%) scale(calc(var(--ts,1)*1.6))}100%{transform:translate(-50%,-50%) scale(var(--ts,1))}}
+.tok.act{animation:pul 1.15s ease-in-out infinite;z-index:25!important}
+@keyframes pul{0%,100%{box-shadow:0 4px 12px rgba(0,0,0,.65),0 0 12px var(--pc)}50%{box-shadow:0 4px 12px rgba(0,0,0,.65),0 0 30px 8px var(--pc)}}
+.fx{position:absolute;pointer-events:none;font-size:calc(var(--cell)*.32);z-index:40;font-weight:900;white-space:nowrap;
+ animation:fxup 1.25s ease-out forwards;text-shadow:0 2px 8px #000,0 0 12px currentColor;transform:translate(-50%,-50%)}
+@keyframes fxup{0%{opacity:0;transform:translate(-50%,-30%) scale(.5)}22%{opacity:1;transform:translate(-50%,-130%) scale(1.15)}
+ 100%{opacity:0;transform:translate(-50%,-260%) scale(.95)}}
+.shock{position:absolute;border-radius:50%;border:3px solid var(--gold);transform:translate(-50%,-50%);
+ animation:shk .85s ease-out forwards;pointer-events:none;z-index:35}
+@keyframes shk{from{opacity:.95;width:10px;height:10px}to{opacity:0;width:150px;height:150px}}
+.skillcast{position:absolute;left:50%;top:2px;transform:translateX(-50%) translateY(-16px) scale(.9);z-index:50;
+ padding:6px 18px;border-radius:999px;font-weight:900;font-size:clamp(11px,1.9vmin,16px);white-space:nowrap;opacity:0;pointer-events:none;
+ transition:.28s cubic-bezier(.2,.9,.3,1.5);color:#1a0a2e;background:linear-gradient(180deg,#fff,var(--sc,var(--gold)));
+ box-shadow:0 10px 30px rgba(0,0,0,.55),0 0 34px var(--sc,var(--gold)),inset 0 1px 0 #fff}
+.skillcast.show{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+/* ============ PLAYER GRID (bottom) ============ */
+.pgrid{flex:0 0 auto;display:grid;gap:6px;padding:7px;grid-template-columns:repeat(auto-fit,minmax(152px,1fr))}
+@media(max-width:600px){.pgrid{grid-template-columns:repeat(2,1fr);gap:5px;padding:5px}}
+.pbcard{position:relative;border-radius:13px;padding:5px 8px 5px 11px;overflow:hidden;min-width:0;
+ display:flex;flex-direction:column;gap:0;border:1px solid var(--line);transition:.25s;
+ background:linear-gradient(155deg,rgba(255,255,255,.13),rgba(0,0,0,.28));
+ box-shadow:0 6px 16px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.2)}
+.pbcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--pc);box-shadow:0 0 14px var(--pc)}
+.pbcard.cur{border-color:var(--gold);box-shadow:0 0 0 1.5px var(--gold),0 8px 22px rgba(255,211,110,.3);transform:translateY(-2px)}
+.pbcard.cast{border-color:var(--sc,var(--gold));box-shadow:0 0 0 2px var(--sc),0 0 26px var(--sc);animation:pbglow .7s ease-in-out 2}
+@keyframes pbglow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
+.pbcard.off{opacity:.5}
+.pbtop{display:flex;align-items:center;gap:5px;min-width:0}
+.pbava{font-size:1.1em;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6));flex:0 0 auto}
+.pbname{font-weight:900;font-size:.85em;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbsc{font-weight:900;color:var(--gold);font-size:1em;flex:0 0 auto;text-shadow:0 0 12px rgba(255,211,110,.5)}
+.pbchar{font-size:.8em;font-weight:900;color:var(--cyan);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pbdesc{font-size:.72em;line-height:1.28;color:var(--dim);font-weight:600;
+ display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pbmeta{font-size:.72em;color:#ffd9a8;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.actionbar{flex:0 0 auto;padding:7px;display:flex;gap:8px;align-items:center;min-height:58px}
+.die{width:46px;height:46px;border-radius:13px;flex:0 0 auto;display:flex;align-items:center;justify-content:center;
+ font-weight:900;font-size:1.5em;color:#23103f;background:linear-gradient(160deg,#fff,#ded8f5 60%,#b9aee0);
+ box-shadow:0 7px 18px rgba(0,0,0,.5),inset 0 2px 0 #fff,inset 0 -4px 0 rgba(0,0,0,.18)}
+.die.roll{animation:dr .6s cubic-bezier(.3,1.4,.5,1)}
+@keyframes dr{0%{transform:rotate(0) scale(1)}55%{transform:rotate(220deg) scale(1.3)}100%{transform:rotate(360deg) scale(1)}}
+#actBtns{display:flex;gap:6px;flex:0 1 auto;max-width:56%;padding-bottom:2px}
+#actBtns .btn{padding:9px 13px;font-size:.9em;flex:0 0 auto;white-space:nowrap}
+#phaseMsg{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#logline{font-size:.84em;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+/* ============ REVEAL / RESULT ============ */
+.revealgrid{display:grid;gap:9px;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));align-content:center;flex:1;min-height:0;padding:10px}
+.revcard{border-radius:16px;padding:10px;text-align:center;border:1px solid var(--line);animation:flip .7s cubic-bezier(.2,.9,.3,1.3) both;
+ background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));box-shadow:0 12px 28px rgba(0,0,0,.45)}
+@keyframes flip{from{transform:rotateY(94deg) scale(.75);opacity:0}to{transform:none;opacity:1}}
+.podium{display:flex;flex-direction:column;gap:6px;padding:10px}
+.prow2{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:14px;border:1px solid var(--line);
+ background:linear-gradient(120deg,rgba(255,255,255,.08),rgba(0,0,0,.22))}
+.prow2.g1{background:linear-gradient(90deg,rgba(255,211,110,.34),rgba(0,0,0,.2));border-color:var(--gold);box-shadow:0 0 22px rgba(255,211,110,.25)}
+.prow2.g2{background:linear-gradient(90deg,rgba(205,225,255,.24),rgba(0,0,0,.2))}
+.prow2 .who{flex:1;min-width:0}
+.prow2 .nm{font-weight:900}
+.prow2 .sub{font-size:.79em;color:var(--dim)}
+.prow2 .sc{font-weight:900;color:var(--gold);font-size:1.15em}
+.fw{position:fixed;width:8px;height:8px;border-radius:50%;z-index:60;pointer-events:none;animation:fwk 1.4s ease-out forwards}
+@keyframes fwk{from{transform:translate(0,0) scale(1);opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(.15);opacity:0}}
+/* ============ MODAL / ERROR ============ */
+.modal{position:fixed;inset:0;z-index:80;background:rgba(3,1,14,.82);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:14px}
+.modal.show{display:flex;animation:fade .3s}
+.modal .box{width:min(660px,100%);max-height:86vh;display:flex;flex-direction:column;padding:14px;gap:8px}
+#errPanel{position:fixed;left:8px;right:8px;bottom:8px;z-index:99;display:none;border-radius:15px;padding:10px 13px;font-size:.9em;
+ background:linear-gradient(180deg,#d32148,#7c0c24);border:2px solid #ff6b88;box-shadow:0 12px 34px rgba(0,0,0,.65)}
+#errPanel.show{display:block;animation:fade .3s}
+#errPanel b{display:block;margin-bottom:2px}
+#errPanel button{float:right;background:#fff;color:#7c0c24;border:0;border-radius:9px;padding:3px 10px;font-weight:900;cursor:pointer;font-family:inherit}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:90;padding:10px 18px;border-radius:999px;font-weight:900;
+ background:rgba(11,3,36,.95);border:1px solid var(--gold);color:var(--gold);opacity:0;transition:.3s;pointer-events:none;
+ max-width:92vw;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(5px)}
+</style>
+</head>
+<body>
+<div id="bg" aria-hidden="true">
+  <div class="sky"></div><div class="aurora"></div><div class="stars"></div>
+  <div class="spot a"></div><div class="spot b"></div>
+  <div class="banner" style="left:6%;background:linear-gradient(180deg,#ff5f95,transparent)"></div>
+  <div class="banner" style="left:23%;animation-delay:.6s;background:linear-gradient(180deg,#57d9ff,transparent)"></div>
+  <div class="banner" style="left:71%;animation-delay:1.1s;background:linear-gradient(180deg,#ffd36e,transparent)"></div>
+  <div class="banner" style="left:90%;animation-delay:.3s;background:linear-gradient(180deg,#7bf5a5,transparent)"></div>
+  <div class="crowd2"></div><div class="crowd"></div>
+  <div id="parts"></div>
+</div>
+
+<div id="errPanel"><button id="errClose">ปิด</button><b>⚠️ เกิดข้อผิดพลาดในระบบ</b><span id="errText"></span></div>
+<div id="toast" class="toast"></div>
+
+<div id="app">
+  <header id="topbar">
+    <span id="logo">✦ MAGICAL ATHLETE</span>
+    <span class="chip" id="chipRoom" style="display:none">ห้อง <b id="roomCode">-----</b></span>
+    <span class="chip" id="chipRace" style="display:none">เลก <b id="raceNum">1</b>/4</span>
+    <span class="chip" id="chipPhase" style="display:none"><span id="phaseName">—</span></span>
+    <span class="spacer"></span>
+    <button class="iconbtn" id="btnMusic" title="เพลงประกอบ">🎵</button>
+    <button class="iconbtn" id="btnSfx" title="เสียงเอฟเฟกต์">🔊</button>
+    <button class="iconbtn" id="btnRules" title="กติกา">❔</button>
+    <button class="iconbtn" id="btnHome" title="กลับเมนูหลัก">🏠</button>
+  </header>
+
+  <main>
+    <!-- MENU -->
+    <section class="screen active" id="sc-menu">
+      <div class="menu-wrap panel sc-y">
+        <div><span class="torch">🔥</span></div>
+        <div class="title-big">มหกรรมกีฬาเวทมนตร์</div>
+        <div class="dim">สนามลอยฟ้าแห่งโลกแฟนตาซี · แข่ง 4 เลก · 2–6 ผู้เล่น</div>
+        <div style="text-align:left">
+          <div class="hint">ชื่อผู้เล่นของคุณ</div>
+          <input id="inName" maxlength="12" placeholder="ใส่ชื่อนักกีฬา…">
+        </div>
+        <div class="menu-grid">
+          <div class="full panel pad" style="display:flex;flex-direction:column;gap:8px">
+            <h3>🤖 เล่นคนเดียว (สู้กับบอท)</h3>
+            <div class="stepper">
+              <button id="pmMinus" type="button">−</button><b id="pmCount">4</b><button id="pmPlus" type="button">+</button>
+              <span class="hint">ผู้เล่นทั้งหมด<br>(คุณ + บอท)</span>
+            </div>
+            <button class="btn" id="btnSolo">🏁 เริ่มการแข่งขัน</button>
+          </div>
+          <div class="full panel pad" style="display:flex;flex-direction:column;gap:8px">
+            <h3>🌐 เล่นออนไลน์กับเพื่อน (P2P)</h3>
+            <div class="menu-grid">
+              <button class="btn cy" id="btnCreate">➕ สร้างห้อง</button>
+              <button class="btn sec" id="btnJoinForm">🔑 เข้าร่วมห้อง</button>
+            </div>
+            <div id="joinForm" style="display:none;gap:7px;flex-direction:column">
+              <input id="inCode" maxlength="5" placeholder="รหัสห้อง 5 ตัวอักษร" style="text-transform:uppercase;letter-spacing:.3em;text-align:center">
+              <button class="btn mg" id="btnJoin">เข้าร่วม</button>
+            </div>
+            <div class="hint" id="netHint">เจ้าของห้องเป็นผู้ตัดสินสูงสุด · เชื่อมต่อตรงระหว่างเครื่อง</div>
+          </div>
+          <button class="btn sec full" id="btnCodex">📚 สารานุกรมนักกีฬาทั้งหมด</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOBBY -->
+    <section class="screen" id="sc-lobby">
+      <div class="panel pad" style="text-align:center">
+        <div class="dim">รหัสห้อง — บอกเพื่อนเพื่อเข้าร่วม</div>
+        <div class="codebox" id="lobbyCode">-----</div>
+        <div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:6px">
+          <button class="btn sec" id="btnCopyCode">📋 คัดลอกรหัส</button>
+          <button class="btn sec" id="btnCopyLink">🔗 คัดลอกลิงก์ชวนเล่น</button>
+        </div>
+      </div>
+      <div class="panel plist sc-y" id="lobbyList" style="flex:1"></div>
+      <div class="panel pad" style="display:flex;gap:9px;align-items:center;flex-wrap:wrap">
+        <span class="hint" id="lobbyHint">รอผู้เล่น…</span><span class="spacer"></span>
+        <button class="btn" id="btnStartGame" style="display:none">🚦 เริ่มเกม</button>
+      </div>
+    </section>
+
+    <!-- DRAFT -->
+    <section class="screen" id="sc-draft">
+      <div class="panel pad hdrrow">
+        <h2>📜 เลือกทีมนักกีฬา (ดราฟต์)</h2>
+        <span class="chip" id="draftTurn">—</span>
+      </div>
+      <div class="split">
+        <div class="panel pad sc-y"><div class="grid-cards" id="draftPool"></div></div>
+        <div class="panel pad sc-y" style="display:flex;flex-direction:column;gap:7px">
+          <h3>ทีมของผู้เล่น</h3>
+          <div id="draftTeams" style="display:flex;flex-direction:column;gap:7px"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECT -->
+    <section class="screen" id="sc-select">
+      <div class="panel pad hdrrow">
+        <h2 style="font-size:1.1em">🤫 เลือกนักวิ่งลับของคุณ</h2>
+        <span class="chip" id="selInfo">—</span>
+        <span class="chip">🔒 คนอื่นยังไม่เห็นตัวเลือกของคุณ</span>
+      </div>
+      <div class="panel" id="selPool" style="display:grid"></div>
+      <div class="panel actionbar">
+        <button class="btn big" id="btnLockPick" disabled>✅ ยืนยันนักวิ่ง</button>
+        <div class="selstatus sc-x" id="selStatus" style="flex:1"></div>
+        <span class="hint" id="selMsg"></span>
+      </div>
+    </section>
+
+    <!-- REVEAL -->
+    <section class="screen" id="sc-reveal">
+      <div class="panel pad" style="text-align:center"><h2>✨ เปิดเผยนักวิ่งพร้อมกัน!</h2></div>
+      <div class="panel revealgrid sc-y" id="revealGrid"></div>
+    </section>
+
+    <!-- RACE -->
+    <section class="screen" id="sc-race">
+      <div class="race-top">
+        <span class="chip" id="raceTrackType">🌿 สนามมาตรฐาน</span>
+        <div class="turnstrip sc-x" id="turnStrip"></div>
+      </div>
+      <div class="panel" id="boardWrap">
+        <div id="board">
+          <svg class="trackpath" viewBox="0 0 5 5" preserveAspectRatio="none">
+            <defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7bf5a5"/><stop offset="35%" stop-color="#57d9ff"/>
+              <stop offset="70%" stop-color="#c390ff"/><stop offset="100%" stop-color="#ffd36e"/>
+            </linearGradient></defs>
+            <polyline class="p-outer" id="pOuter" points=""></polyline>
+            <polyline class="p-mid" id="pMid" points=""></polyline>
+            <polyline class="p-flow" id="pFlow" points=""></polyline>
+          </svg>
+          <div class="cells" id="cells"></div>
+          <div class="toks" id="toks"></div>
+          <div class="skillcast" id="skillCast"></div>
+        </div>
+      </div>
+      <div class="panel pgrid" id="playerGrid"></div>
+      <div class="panel actionbar">
+        <div class="die" id="dieBox">🎲</div>
+        <div style="display:flex;flex-direction:column;min-width:0;flex:1">
+          <span id="phaseMsg">เตรียมพร้อม…</span>
+          <span id="logline"></span>
+        </div>
+        <div id="actBtns" class="sc-x"></div>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen" id="sc-result">
+      <div class="panel pad" style="text-align:center"><h2 id="resTitle">🏅 ผลการแข่งขัน</h2><div class="dim" id="resSub"></div></div>
+      <div class="panel podium sc-y" id="resBody" style="flex:1"></div>
+      <div class="panel actionbar" style="justify-content:center">
+        <button class="btn" id="btnNextRace">▶️ ไปเลกถัดไป</button>
+        <button class="btn sec" id="btnBackMenu" style="display:none">🏠 กลับเมนูหลัก</button>
+        <span class="hint" id="resHint"></span>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal" id="rulesModal">
+  <div class="box panel">
+    <div class="hdrrow"><h2>📖 กติกาการแข่งขัน</h2><button class="iconbtn" id="btnCloseRules">✕</button></div>
+    <div class="sc-y" style="line-height:1.65">
+      <h3>ภาพรวม</h3>
+      <p>ผู้เล่น 2–6 คน แข่งขัน <b>4 เลก</b> บนสนามงูเลื้อย 24 ช่อง ผู้มีคะแนนรวมสูงสุดเมื่อจบเลกสุดท้ายคือผู้ชนะ</p>
+      <h3>1) ดราฟต์นักกีฬา</h3>
+      <p>สุ่มนักกีฬาเป็นกองกลาง ผลัดกันเลือกแบบงูเลื้อย (1→N→N→1) จนทุกคนมีนักกีฬา <b>คนละ 4 คน</b> ขั้นนี้เป็นข้อมูลเปิด</p>
+      <h3>2) เลือกนักวิ่งแบบลับ</h3>
+      <p>ก่อนเริ่มแต่ละเลก ทุกคน<b>เลือกพร้อมกันแบบปิด</b> แล้วเปิดพร้อมกัน นักกีฬาแต่ละคนลงแข่งได้ <b>1 ครั้งต่อเกม</b></p>
+      <h3>3) การแข่ง</h3>
+      <p>นักวิ่งทุกคนอยู่บน<b>สนามเดียวกัน</b> ผลัดกันเล่นตามลำดับที่นั่ง (ผู้เริ่มหมุนเวียนทุกเลก) ทอยลูกเต๋า 1 ลูกแล้วเดิน แก้ไขความสามารถตามลำดับ: ก่อนทอย → ทอย → ปรับระยะ → ผลระหว่างวิ่งผ่าน → ผลเมื่อหยุดช่องเดียวกัน → ช่องพิเศษ → ผลตอนจบตา</p>
+      <p><b>สะดุดล้ม:</b> ตาถัดไปใช้ไปกับการลุกขึ้นยืน (ไม่เดิน) แต่ความสามารถติดตัวยังทำงาน</p>
+      <h3>4) ช่องพิเศษ (สนามป่าพิศวง — เลก 2 และ 4)</h3>
+      <p>➡️ ลูกศร: ดีดไปหน้า/หลังทันที · 💥 ช่องสะดุด: ล้ม · ⭐ ดาว: ได้ 1 คะแนนทันที</p>
+      <h3>5) คะแนน</h3>
+      <p>ให้เฉพาะ <b>ที่ 1 และที่ 2</b> — เลก 1 → 🥇3/🥈1 · เลก 2 → 🥇4/🥈2 · เลก 3 → 🥇4/🥈2 · เลก 4 → 🥇5/🥈3 · ⭐ ดาวใบละ 1 คะแนน</p>
+      <p>เลกจบทันทีเมื่อเข้าเส้นชัยครบ 2 คน (หรือเหลือนักวิ่งคนเดียว ให้ได้อันดับ 2 โดยปริยาย)</p>
+      <h3>6) ข้อมูลลับ</h3>
+      <p>คุณเห็นเฉพาะข้อมูลลับของตัวเอง ตัวเลือกก่อนเปิด และความสามารถของ 🥚 ไข่ปริศนา จะไม่ถูกส่งไปเครื่องผู้เล่นอื่นเด็ดขาด บอทอยู่ใต้ข้อจำกัดเดียวกัน · หลังเปิดเผยแล้ว ความสามารถทุกคนเป็นข้อมูลเปิด แสดงที่แถบผู้เล่นด้านล่าง</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="codexModal">
+  <div class="box panel">
+    <div class="hdrrow"><h2>📚 สารานุกรมนักกีฬา</h2><button class="iconbtn" id="btnCloseCodex">✕</button></div>
+    <div class="sc-y"><div class="grid-cards" id="codexGrid"></div></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+(function(){
+/* ============ ERROR ============ */
+function showErr(m){try{var t=document.getElementById('errText');if(t)t.textContent=String(m).slice(0,400);
+  var p=document.getElementById('errPanel');if(p)p.classList.add('show');}catch(e){}}
+window.addEventListener('error',function(e){showErr('ข้อผิดพลาด: '+(e.message||e));});
+window.addEventListener('unhandledrejection',function(e){showErr('ข้อผิดพลาด: '+((e.reason&&e.reason.message)||e.reason));});
+function guard(fn,l){return function(){try{return fn.apply(this,arguments);}catch(e){showErr((l||'')+' '+(e&&e.message||e));console.error(e);}};}
+
+/* ============ UTILS ============ */
+function $(id){return document.getElementById(id);}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+function ri(n){return Math.floor(Math.random()*n);}
+function pick(a){return a[ri(a.length)];}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=ri(i+1),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function clamp(v,a,b){return v<a?a:(v>b?b:v);}
+function toast(m){var t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);
+  t._t=setTimeout(function(){t.classList.remove('show');},2200);}
+
+/* ============ AUDIO ============ */
+var AU={ctx:null,gain:null,music:true,sfx:true,timer:null,step:0,
+ unlock:function(){try{
+   if(!this.ctx){var C=window.AudioContext||window.webkitAudioContext;if(!C)return;
+     this.ctx=new C();this.gain=this.ctx.createGain();this.gain.gain.value=.5;this.gain.connect(this.ctx.destination);}
+   if(this.ctx.state==='suspended')this.ctx.resume();
+   if(this.music&&!this.timer)this.startMusic();}catch(e){}},
+ tone:function(f,d,ty,v,dl){try{if(!this.ctx||!this.gain)return;
+   var t=this.ctx.currentTime+(dl||0),o=this.ctx.createOscillator(),g=this.ctx.createGain();
+   o.type=ty||'sine';o.frequency.setValueAtTime(f,t);
+   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.16,t+.02);
+   g.gain.exponentialRampToValueAtTime(.0001,t+d);
+   o.connect(g);g.connect(this.gain);o.start(t);o.stop(t+d+.05);}catch(e){}},
+ s:function(k){if(!this.sfx||!this.ctx)return;try{switch(k){
+   case 'click':this.tone(680,.07,'triangle',.13);break;
+   case 'roll':this.tone(300,.05,'square',.11);this.tone(430,.05,'square',.11,.06);this.tone(580,.08,'square',.11,.12);break;
+   case 'run':this.tone(250,.06,'sine',.1);this.tone(330,.06,'sine',.1,.07);break;
+   case 'ability':this.tone(900,.12,'triangle',.16);this.tone(1350,.15,'triangle',.12,.08);break;
+   case 'bad':this.tone(210,.2,'sawtooth',.13);this.tone(140,.26,'sawtooth',.11,.1);break;
+   case 'reveal':this.tone(523,.1,'triangle',.15);this.tone(659,.1,'triangle',.15,.09);this.tone(784,.17,'triangle',.15,.18);break;
+   case 'finish':[523,659,784,1046].forEach(function(f,i){AU.tone(f,.18,'triangle',.17,i*.09);});break;
+   case 'victory':[523,659,784,1046,1318].forEach(function(f,i){AU.tone(f,.3,'triangle',.19,i*.13);});break;
+   case 'star':this.tone(1250,.1,'sine',.16);this.tone(1700,.13,'sine',.13,.08);break;}}catch(e){}},
+ startMusic:function(){var self=this;if(!this.ctx)return;if(this.timer)clearInterval(this.timer);
+   var bass=[65.4,65.4,87.3,98,110,98,87.3,73.4],mel=[392,440,523,440,587,523,440,392,349,392,440,523];
+   this.step=0;
+   this.timer=setInterval(function(){if(!self.music||!self.ctx)return;var s=self.step++;
+     self.tone(bass[s%bass.length],.34,'triangle',.085);
+     if(s%2===0)self.tone(mel[Math.floor(s/2)%mel.length],.26,'sine',.055);
+     if(s%4===0)self.tone(1400,.04,'square',.03);
+     if(s%8===4)self.tone(2000,.03,'square',.026);},300);},
+ stopMusic:function(){if(this.timer){clearInterval(this.timer);this.timer=null;}}};
+
+/* ============ PARTICLES ============ */
+(function(){var h=$('parts'),c=['#57d9ff','#ff5f95','#ffd36e','#7bf5a5','#c390ff'];
+ for(var i=0;i<24;i++){var p=el('div','particle');
+  p.style.left=(Math.random()*100)+'%';p.style.bottom=(-10-Math.random()*20)+'%';
+  p.style.background=pick(c);p.style.animationDuration=(9+Math.random()*13)+'s';
+  p.style.animationDelay=(Math.random()*11)+'s';
+  var s=(3+Math.random()*6)+'px';p.style.width=s;p.style.height=s;h.appendChild(p);}})();
+function fireworks(n){var cols=['#ffd36e','#ff5f95','#57d9ff','#7bf5a5','#c390ff','#fff'];
+ for(var k=0;k<(n||6);k++){(function(k){setTimeout(function(){
+  var cx=10+Math.random()*80,cy=12+Math.random()*45;
+  for(var i=0;i<18;i++){var d=el('div','fw'),a=(Math.PI*2/18)*i,r=55+Math.random()*95;
+   d.style.left=cx+'vw';d.style.top=cy+'vh';d.style.background=pick(cols);
+   d.style.setProperty('--dx',(Math.cos(a)*r)+'px');d.style.setProperty('--dy',(Math.sin(a)*r)+'px');
+   document.body.appendChild(d);setTimeout(function(){d.remove();},1500);}},k*280);})(k);}}
+
+/* ============ CHARACTERS ============ */
+var GOAL=24,COLS=5;
+var CH={
+ runner:{n:'นักวิ่งสายฟ้า',i:'⚡',r:6,c:'#ffd36e',d:'การเคลื่อนที่หลัก +1 ช่องเสมอ'},
+ golem:{n:'โกเลมศิลา',i:'🗿',r:6,c:'#b9a88a',d:'ไม่ทอยเต๋า เดิน 3 ช่องเสมอ และไม่ได้รับผลจากความสามารถของผู้อื่น'},
+ assassin:{n:'นักฆ่าเงา',i:'🗡️',r:8,c:'#ff5f95',d:'ถ้าหยุดที่ช่องเดียวกับนักวิ่งคนอื่น ส่งคนนั้นกลับจุดเริ่มต้น'},
+ wizard:{n:'จอมเวทมนตร์',i:'🔮',r:9,c:'#c390ff',d:'แทนการเดิน อาจสลับตำแหน่งกับนักวิ่งที่อยู่ข้างหน้าคนใดก็ได้'},
+ thief:{n:'โจรฉกไว',i:'🥷',r:7,c:'#8aa0ff',d:'นักวิ่งทุกคนที่ถูกวิ่งผ่าน ถอยหลัง 1 ช่อง'},
+ giant:{n:'ยักษ์ทุบภูผา',i:'👹',r:7,c:'#ff7a4d',d:'นักวิ่งที่อยู่ในช่องที่หยุด ถูกผลักถอย 3 ช่อง'},
+ ninja:{n:'นินจาสายลม',i:'🌀',r:7,c:'#57d9ff',d:'ถ้าแต้มเต๋าเป็นเลขคี่ เดินเป็นสองเท่า'},
+ princess:{n:'เจ้าหญิงเสน่ห์',i:'👑',r:8,c:'#ff9ec7',d:'หลังเดิน ดึงนักวิ่งที่อยู่ข้างหน้าไม่เกิน 3 ช่อง กลับมาอยู่ช่องเดียวกับเธอ'},
+ dragon:{n:'มังกรเพลิง',i:'🐉',r:8,c:'#ff4d3d',d:'เมื่อจบการเดิน นักวิ่งทุกคนในระยะ 2 ช่อง ถูกผลักถอย 2 ช่อง'},
+ gambler:{n:'นักพนันเสี่ยงโชค',i:'🎲',r:7,c:'#ffd36e',d:'ทอยเต๋า 2 ลูก เลือกใช้ 1 ลูก ถ้าออกแต้มเท่ากันให้เดินผลรวม'},
+ dwarf:{n:'คนแคระขุดทอง',i:'⛏️',r:6,c:'#d2a24c',d:'เดินอย่างน้อย 3 ช่องเสมอ'},
+ fairy:{n:'นางฟ้าจอมซน',i:'🧚',r:8,c:'#9cffd8',d:'หลังเดิน อาจเสกให้นักวิ่งคนใดคนหนึ่งถอยหลัง 3 ช่อง'},
+ priest:{n:'นักบวชแห่งแสง',i:'✨',r:8,c:'#fff3b0',d:'+1 ช่อง ต่อนักวิ่ง 1 คนที่อยู่ข้างหน้าตน'},
+ vampire:{n:'แวมไพร์ดูดพลัง',i:'🧛',r:7,c:'#e05a74',d:'+1 ช่อง ต่อนักวิ่ง 1 คนที่วิ่งผ่าน'},
+ ghost:{n:'ผีล่องหน',i:'👻',r:6,c:'#dfe7ff',d:'ไม่ได้รับผลจากความสามารถของผู้อื่น และถ้าทอยได้ 1 ให้เดิน 6 แทน'},
+ merchant:{n:'พ่อค้าเร่',i:'💰',r:7,c:'#ffc861',d:'เริ่มด้วย 5 เหรียญ รับ 1 เหรียญทุกตา จ่ายเหรียญเพื่อเดินเพิ่ม 1 ช่อง/เหรียญ (สูงสุด 3)'},
+ egg:{n:'ไข่ปริศนา',i:'🥚',r:6,c:'#ffeccb',d:'ความสามารถเป็นความลับจากทุกคนรวมถึงเจ้าของ จะฟักในตาแรกแล้วเปิดเผย'},
+ rabbit:{n:'กระต่ายพุ่งทะยาน',i:'🐇',r:8,c:'#ffd9ee',d:'เดินเป็นสองเท่า แต่ถ้าทอยได้ 1 จะสะดุดล้มทันที'},
+ turtle:{n:'เต่าเกราะเพชร',i:'🐢',r:6,c:'#7bf5a5',d:'เดิน 4 ช่องเสมอ และใครที่หยุดช่องเดียวกันจะสะดุดล้ม'},
+ alchemist:{n:'นักแปรธาตุ',i:'⚗️',r:7,c:'#9cffb0',d:'ในตาของตน ลอกความสามารถของนักวิ่งที่เป็นผู้นำอันดับ 1'},
+ sylph:{n:'ภูตสายลม',i:'🍃',r:8,c:'#b6ffcf',d:'ถ้าทอยได้ 5 หรือ 6 ให้ทอยซ้ำแล้วบวกเพิ่ม (ต่อเนื่องได้)'},
+ knight:{n:'อัศวินเหล็กกล้า',i:'🛡️',r:7,c:'#b7c7e0',d:'ไม่ถูกผลักถอยหลังจากความสามารถใด ๆ และ +2 ช่องเมื่ออยู่อันดับสุดท้าย'},
+ werewolf:{n:'มนุษย์หมาป่า',i:'🐺',r:7,c:'#9a8ab5',d:'ถ้าแต้มเต๋าเป็นเลขคู่ เดินเป็นสองเท่า'},
+ icegiant:{n:'ยักษ์น้ำแข็ง',i:'❄️',r:8,c:'#a8ecff',d:'นักวิ่งที่ถูกวิ่งผ่านหรือถูกหยุดทับ จะถูกแช่แข็งจนสะดุดล้ม'},
+ storm:{n:'จอมพายุ',i:'🌩️',r:7,c:'#8fd0ff',d:'เมื่อจบตาของตน ผู้นำอันดับ 1 ถูกฟ้าผ่าถอย 1 ช่อง'},
+ pirate:{n:'โจรสลัดเวหา',i:'🏴‍☠️',r:6,c:'#c9b8a0',d:'แทนการเดิน อาจสลับตำแหน่งกับนักวิ่งข้างหน้าที่ใกล้ที่สุด'},
+ treant:{n:'ทรีแอนท์โบราณ',i:'🌳',r:7,c:'#8fd97a',d:'ตาแรกเดิน 2 ช่อง และเพิ่มขึ้นตาละ 1 ช่อง (2,3,4,5,…)'},
+ bee:{n:'ผึ้งยักษ์',i:'🐝',r:6,c:'#ffe066',d:'ถ้าเดินจบในช่องที่มีนักวิ่งคนอื่น ได้เดินต่ออีก 2 ช่อง'}};
+var CHIDS=Object.keys(CH);
+var HATCHABLE=CHIDS.filter(function(k){return k!=='egg'&&k!=='alchemist';});
+function chName(id){return CH[id]?CH[id].n:'ไม่ทราบ';}
+function chIcon(id){return CH[id]?CH[id].i:'❔';}
+function chDesc(id){return CH[id]?CH[id].d:'';}
+function chColor(id){return CH[id]?CH[id].c:'#ffd36e';}
+var PCOLORS=['#ff5f95','#57d9ff','#ffd36e','#7bf5a5','#c390ff','#ffa55c'];
+var WILD={4:{t:'arrow',v:3},7:{t:'trip'},10:{t:'star'},13:{t:'arrow',v:-4},16:{t:'trip'},18:{t:'star'},21:{t:'arrow',v:2}};
+function trackOf(n){return (n===2||n===4)?'wild':'mild';}
+function spaceAt(tr,p){return tr==='wild'?(WILD[p]||null):null;}
+var GOLD=[3,4,4,5],SILVER=[1,2,2,3];
+function cellRC(i){var row=Math.floor(i/COLS),col=(row%2===0)?(i%COLS):(COLS-1-(i%COLS));return {r:row,c:col};}
+var STACK={1:[[0,0]],2:[[-.16,-.04],[.16,.04]],3:[[0,-.19],[-.2,.13],[.2,.13]],
+ 4:[[-.17,-.17],[.17,-.17],[-.17,.17],[.17,.17]],
+ 5:[[0,-.21],[-.21,-.04],[.21,-.04],[-.13,.21],[.13,.21]],
+ 6:[[-.18,-.18],[.18,-.18],[-.25,.02],[.25,.02],[-.14,.22],[.14,.22]]};
+
+/* ============ NET ============ */
+var NET={peer:null,isHost:false,hostConn:null,code:null,ready:false,
+ makeCode:function(){var A='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',s='';for(var i=0;i<5;i++)s+=A[ri(A.length)];return s;},
+ pid:function(c){return 'magath7-'+c;},
+ available:function(){return !window.__PEER_FAIL&&typeof window.Peer==='function';},
+ host:function(code,cb){var self=this;
+  if(!this.available()){cb('ไม่สามารถโหลดระบบเชื่อมต่อออนไลน์ได้ กรุณาตรวจสอบอินเทอร์เน็ต');return;}
+  try{this.peer=new Peer(this.pid(code),{debug:0});}catch(e){cb('สร้างห้องไม่สำเร็จ: '+e.message);return;}
+  this.isHost=true;this.code=code;
+  this.peer.on('open',function(){self.ready=true;cb(null);});
+  this.peer.on('error',function(e){var ty=(e&&e.type)||String(e);
+   if(ty==='unavailable-id')cb('รหัสห้องนี้ถูกใช้อยู่ กรุณาลองสร้างใหม่');
+   else if(!self.ready)cb('เชื่อมต่อไม่สำเร็จ: '+ty);
+   else if(ty!=='peer-unavailable')showErr('เครือข่าย: '+ty);});
+  this.peer.on('connection',function(conn){
+   conn.on('data',function(m){try{HOST.onNetMessage(conn,m);}catch(err){showErr('รับข้อมูล: '+err.message);}});
+   conn.on('close',function(){HOST.onConnClose(conn);});
+   conn.on('error',function(){HOST.onConnClose(conn);});});},
+ join:function(code,name,cb){var self=this,done=false;
+  if(!this.available()){cb('ไม่สามารถโหลดระบบเชื่อมต่อออนไลน์ได้');return;}
+  try{this.peer=new Peer({debug:0});}catch(e){cb('เชื่อมต่อไม่สำเร็จ: '+e.message);return;}
+  this.isHost=false;this.code=code;
+  this.peer.on('open',function(){
+   var conn=self.peer.connect(self.pid(code),{reliable:true});self.hostConn=conn;
+   var t=setTimeout(function(){if(!done){done=true;cb('หาห้องไม่พบ หรือเจ้าของห้องออฟไลน์');}},10000);
+   conn.on('open',function(){done=true;clearTimeout(t);cb(null);conn.send({t:'join',name:name,ver:3});});
+   conn.on('data',function(m){try{CLIENT.onHostMessage(m);}catch(err){showErr('รับข้อมูล: '+err.message);}});
+   conn.on('close',function(){CLIENT.onDisconnected();});
+   conn.on('error',function(){if(!done){done=true;clearTimeout(t);cb('เชื่อมต่อห้องไม่สำเร็จ');}});});
+  this.peer.on('error',function(e){var ty=(e&&e.type)||String(e);
+   if(!done){done=true;cb(ty==='peer-unavailable'?'ไม่พบห้องรหัสนี้':'เชื่อมต่อไม่สำเร็จ: '+ty);}});},
+ sendToHost:function(m){try{if(this.hostConn&&this.hostConn.open)this.hostConn.send(m);}catch(e){}},
+ destroy:function(){try{if(this.peer)this.peer.destroy();}catch(e){}
+  this.peer=null;this.hostConn=null;this.isHost=false;this.ready=false;this.code=null;}};
+
+/* ============ HOST ENGINE ============ */
+var HOST={on:false,S:null,conns:{},lastSeq:{},botTimer:null,resolving:false,
+ newGame:function(mode,code){this.on=true;this.conns={};this.lastSeq={};this.resolving=false;
+  if(this.botTimer){clearTimeout(this.botTimer);this.botTimer=null;}
+  this.S={mode:mode,code:code,phase:'lobby',stateSeq:0,players:[],race:null,draft:null,
+   secret:{},reveal:null,log:[],raceNum:0,lastResult:null,gameOver:false};},
+ addPlayer:function(name,bot){var S=this.S,i=S.players.length;
+  var p={pid:'p'+i+'_'+ri(99999),name:name,bot:!!bot,connected:true,auto:!!bot,color:PCOLORS[i%6],
+   team:[],used:[],score:0,stars:0,golds:0,silvers:0,seat:i};
+  S.players.push(p);return p;},
+ byPid:function(pid){var a=this.S.players;for(var i=0;i<a.length;i++)if(a[i].pid===pid)return a[i];return null;},
+ pushLog:function(t){this.S.log.push(t);if(this.S.log.length>40)this.S.log.shift();},
+ send:function(pid,m){if(pid===CLIENT.myPid){CLIENT.onHostMessage(m);return;}
+  var c=this.conns[pid];try{if(c&&c.open)c.send(m);}catch(e){}},
+ emit:function(m){for(var i=0;i<this.S.players.length;i++){var p=this.S.players[i];if(p.bot)continue;this.send(p.pid,m);}},
+ broadcast:function(){if(!this.on)return;this.S.stateSeq++;
+  for(var i=0;i<this.S.players.length;i++){var p=this.S.players[i];if(p.bot)continue;
+   this.send(p.pid,{t:'state',stateSeq:this.S.stateSeq,view:this.buildView(p.pid)});}},
+ skill:function(pid,ch,txt){this.emit({t:'skill',pid:pid,ch:ch,txt:txt});},
+ hit:function(pid,txt,kind){this.emit({t:'fx',pid:pid,txt:txt,kind:kind||''});},
+
+ onNetMessage:function(conn,msg){if(!this.on||!msg)return;var S=this.S,i;
+  if(msg.t==='join'){var nm=String(msg.name||'ผู้เล่น').slice(0,12),ex=null;
+   for(i=0;i<S.players.length;i++)if(S.players[i].name===nm&&!S.players[i].bot)ex=S.players[i];
+   if(ex){ex.connected=true;ex.auto=false;this.conns[ex.pid]=conn;conn._pid=ex.pid;
+    try{conn.send({t:'welcome',pid:ex.pid,code:S.code,rejoin:true});}catch(e){}
+    this.pushLog('🔌 '+nm+' กลับเข้าห้องแล้ว');this.broadcast();this.scheduleBots();return;}
+   if(S.phase!=='lobby'){try{conn.send({t:'deny',msg:'เกมเริ่มไปแล้ว — เข้าร่วมได้เฉพาะด้วยชื่อเดิมที่เคยเล่นในห้องนี้'});}catch(e){}return;}
+   if(S.players.length>=6){try{conn.send({t:'deny',msg:'ห้องเต็มแล้ว (สูงสุด 6 คน)'});}catch(e){}return;}
+   var p=this.addPlayer(nm,false);this.conns[p.pid]=conn;conn._pid=p.pid;
+   try{conn.send({t:'welcome',pid:p.pid,code:S.code});}catch(e){}
+   this.pushLog('👋 '+nm+' เข้าร่วมห้อง');this.broadcast();return;}
+  if(msg.t==='action'){var pid=conn._pid;if(!pid)return;
+   var last=this.lastSeq[pid]||0;
+   if(typeof msg.seq==='number'){if(msg.seq<=last)return;this.lastSeq[pid]=msg.seq;}
+   this.handleAction(pid,msg.a);}},
+ onConnClose:function(conn){var pid=conn&&conn._pid;if(!pid||!this.on)return;
+  if(this.conns[pid]===conn)delete this.conns[pid];
+  var p=this.byPid(pid);if(!p||!p.connected)return;
+  p.connected=false;p.auto=true;
+  this.pushLog('⚠️ '+p.name+' หลุดการเชื่อมต่อ — ระบบจะเล่นแทนชั่วคราว');
+  this.broadcast();this.scheduleBots();},
+
+ buildView:function(pid){var S=this.S,i,k;
+  var v={phase:S.phase,mode:S.mode,code:S.code,myPid:pid,raceNum:S.raceNum,log:S.log.slice(-4),
+   gameOver:S.gameOver,players:[]};
+  for(i=0;i<S.players.length;i++){var p=S.players[i];
+   v.players.push({pid:p.pid,name:p.name,color:p.color,bot:p.bot,connected:p.connected,auto:p.auto,
+    team:p.team.slice(),used:p.used.slice(),score:p.score,stars:p.stars,golds:p.golds,silvers:p.silvers,seat:p.seat});}
+  if(S.phase==='draft'&&S.draft)v.draft={pool:S.draft.pool.slice(),cur:S.draft.order[S.draft.idx]||null,
+   picked:S.draft.idx,total:S.draft.order.length,round:Math.floor(S.draft.idx/S.players.length)+1};
+  if(S.phase==='select'){var locked=[];for(k in S.secret)if(S.secret[k])locked.push(k);
+   v.select={locked:locked,myPick:(S.secret[pid]||null),needed:S.players.length};}
+  if(S.phase==='reveal'&&S.reveal)v.reveal=S.reveal.slice();
+  if((S.phase==='race'||S.phase==='raceend')&&S.race){var R=S.race;
+   v.race={track:R.track,num:R.num,curPid:R.order[R.idx]||null,die:R.die,dice:R.dice,
+    order:R.order.slice(),finished:R.finished,
+    awaiting:R.awaiting?{pid:R.awaiting.pid,kind:R.awaiting.kind,options:R.awaiting.options,label:R.awaiting.label}:null,
+    racers:R.racers.map(function(r){return {pid:r.pid,ch:(r.ch==='egg'&&!r.hatched)?'egg':(r.hatched||r.ch),
+     hatched:r.hatched||null,pos:r.pos,finished:r.finished,rank:r.rank,tripped:r.tripped,coins:r.coins,copy:r.copy||null};})};
+   var mine=null;for(i=0;i<R.racers.length;i++)if(R.racers[i].pid===pid)mine=R.racers[i];
+   v.mine=mine?{ch:mine.ch,coins:mine.coins,secretNote:(mine.ch==='egg'&&!mine.hatched)?'ยังไม่รู้ว่าไข่จะฟักเป็นอะไร':null}:null;}
+  if(S.phase==='result'||S.phase==='gameend')v.result=S.lastResult;
+  return v;},
+
+ handleAction:guard(function(pid,a){if(!this.on||!a)return;var S=this.S;if(!S.players.length)return;
+  if(a.type==='startGame'){if(pid===S.players[0].pid&&S.phase==='lobby')this.startGame();return;}
+  if(a.type==='draftPick'){this.draftPick(pid,a.ch);return;}
+  if(a.type==='select'){this.selectRacer(pid,a.ch);return;}
+  if(a.type==='act'){this.raceAction(pid,a.opt);return;}
+  if(a.type==='nextRace'){if(pid===S.players[0].pid)this.nextRace();return;}},'การกระทำ:'),
+
+ startGame:function(){var S=this.S,n=S.players.length;
+  if(n<2){toast('ต้องมีผู้เล่นอย่างน้อย 2 คน');return;}
+  var pool=shuffle(CHIDS.slice()).slice(0,Math.min(CHIDS.length,n*4+3));
+  var seats=S.players.map(function(p){return p.pid;}),order=[];
+  for(var r=0;r<4;r++){var row=seats.slice();if(r%2===1)row.reverse();order=order.concat(row);}
+  S.draft={pool:pool,order:order,idx:0};S.phase='draft';S.raceNum=0;
+  this.pushLog('📜 เริ่มการดราฟต์นักกีฬา');this.broadcast();this.scheduleBots();},
+ draftPick:function(pid,ch){var S=this.S;if(S.phase!=='draft')return;
+  var D=S.draft;if(D.order[D.idx]!==pid)return;
+  var i=D.pool.indexOf(ch);if(i<0)return;
+  var p=this.byPid(pid);if(!p||p.team.length>=4)return;
+  D.pool.splice(i,1);p.team.push(ch);D.idx++;
+  this.pushLog('📋 '+p.name+' เลือก '+chIcon(ch)+' '+chName(ch));
+  if(D.idx>=D.order.length){this.startSelect();return;}
+  this.broadcast();this.scheduleBots();},
+
+ startSelect:function(){var S=this.S;S.raceNum++;S.phase='select';S.secret={};S.reveal=null;S.race=null;
+  this.pushLog('🤫 เลกที่ '+S.raceNum+' — เลือกนักวิ่งแบบลับ');this.broadcast();this.scheduleBots();},
+ selectRacer:function(pid,ch){var S=this.S;if(S.phase!=='select')return;
+  var p=this.byPid(pid);if(!p)return;
+  if(p.team.indexOf(ch)<0||p.used.indexOf(ch)>=0||S.secret[pid])return;
+  S.secret[pid]=ch;this.broadcast();
+  for(var i=0;i<S.players.length;i++)if(!S.secret[S.players[i].pid])return;
+  this.doReveal();},
+ doReveal:async function(){try{var S=this.S;S.phase='reveal';
+  S.reveal=S.players.map(function(p){return {pid:p.pid,name:p.name,ch:S.secret[p.pid],color:p.color};});
+  this.pushLog('✨ เปิดเผยนักวิ่ง!');this.broadcast();await sleep(2500);this.startRace();
+ }catch(e){showErr('เปิดเผย: '+e.message);}},
+
+ startRace:function(){var S=this.S,n=S.players.length;
+  var racers=S.players.map(function(p){var ch=S.secret[p.pid];p.used.push(ch);
+   return {pid:p.pid,ch:ch,pos:0,finished:false,rank:0,tripped:false,coins:(ch==='merchant'?5:0),
+    growth:0,turns:0,copy:null,hatched:null,hiddenEgg:(ch==='egg'?pick(HATCHABLE):null)};});
+  var st=(S.raceNum-1)%n,order=[];
+  for(var i=0;i<n;i++)order.push(S.players[(st+i)%n].pid);
+  S.race={num:S.raceNum,track:trackOf(S.raceNum),racers:racers,order:order,idx:0,
+   awaiting:null,die:null,dice:null,finished:0,ranks:[]};
+  S.phase='race';this.resolving=false;
+  this.pushLog('🚦 เริ่มเลกที่ '+S.raceNum+' ('+(S.race.track==='wild'?'สนามป่าพิศวง':'สนามมาตรฐาน')+')');
+  this.broadcast();var self=this;setTimeout(function(){self.beginTurn();},900);},
+ racerOf:function(pid){var a=this.S.race.racers;for(var i=0;i<a.length;i++)if(a[i].pid===pid)return a[i];return null;},
+ activeChar:function(r){if(r.ch==='egg')return r.hatched||'egg';
+  if(r.ch==='alchemist'&&r.copy)return r.copy;return r.ch;},
+ leaderOther:function(r){var b=null;this.S.race.racers.forEach(function(x){
+  if(x===r||x.finished)return;if(!b||x.pos>b.pos)b=x;});return b;},
+ immune:function(r,back){var c=this.activeChar(r);
+  if(c==='golem'||c==='ghost')return true;
+  if(back&&c==='knight')return true;return false;},
+ cast:async function(r,txt,snd){var c=this.activeChar(r);
+  this.skill(r.pid,c,chIcon(c)+' '+txt);AU.s(snd||'ability');await sleep(620);},
+
+ beginTurn:async function(){try{
+  var S=this.S;if(S.phase!=='race')return;
+  var R=S.race,i,found=false;
+  for(i=0;i<R.order.length;i++){var cd=this.racerOf(R.order[(R.idx+i)%R.order.length]);
+   if(cd&&!cd.finished){R.idx=(R.idx+i)%R.order.length;found=true;break;}}
+  if(!found)return this.endRace();
+  var pid=R.order[R.idx],r=this.racerOf(pid),p=this.byPid(pid);
+  R.die=null;R.dice=null;R.awaiting=null;r.turns++;
+  if(r.ch==='egg'&&!r.hatched){r.hatched=r.hiddenEgg;
+   this.pushLog('🐣 ไข่ปริศนาของ '+p.name+' ฟักเป็น '+chIcon(r.hatched)+' '+chName(r.hatched)+'!');
+   this.skill(pid,r.hatched,'🐣 ฟักเป็น '+chName(r.hatched)+'!');
+   AU.s('reveal');this.broadcast();await sleep(1200);}
+  if(r.ch==='alchemist'){var L=this.leaderOther(r),cc=L?this.activeChar(L):'runner';
+   if(cc==='alchemist')cc='runner';
+   if(r.copy!==cc){r.copy=cc;
+    this.pushLog('⚗️ '+p.name+' ลอกความสามารถของ '+chIcon(cc)+' '+chName(cc));
+    this.skill(pid,'alchemist','⚗️ ลอก '+chName(cc));AU.s('ability');this.broadcast();await sleep(700);}}
+  if(this.activeChar(r)==='merchant')r.coins++;
+  if(r.tripped){r.tripped=false;
+   this.pushLog('🤕 '+p.name+' ใช้ตานี้ลุกขึ้นยืน');this.hit(pid,'🤕 ลุกขึ้นยืน','bad');
+   this.broadcast();await sleep(820);await this.endOfTurnPassive(r);return this.endTurn();}
+  var c=this.activeChar(r),opts=null,self=this,ahead;
+  if(c==='wizard'){
+   ahead=R.racers.filter(function(x){return !x.finished&&x!==r&&x.pos>r.pos;});
+   if(ahead.length){opts=[{id:'roll',label:'🎲 ทอยเต๋าเดินปกติ'}];
+    ahead.sort(function(a,b){return b.pos-a.pos;}).forEach(function(x){
+     opts.push({id:'swap:'+x.pid,label:'🔮 สลับที่กับ '+self.byPid(x.pid).name+' (ช่อง '+x.pos+')'});});}
+  }else if(c==='pirate'){
+   ahead=R.racers.filter(function(x){return !x.finished&&x!==r&&x.pos>r.pos;}).sort(function(a,b){return a.pos-b.pos;});
+   if(ahead.length)opts=[{id:'roll',label:'🎲 ทอยเต๋าเดินปกติ'},
+    {id:'swap:'+ahead[0].pid,label:'🏴‍☠️ สลับที่กับ '+this.byPid(ahead[0].pid).name+' (ช่อง '+ahead[0].pos+')'}];}
+  R.awaiting=opts?{pid:pid,kind:'pre',options:opts,label:'เลือกการกระทำ'}
+   :{pid:pid,kind:'roll',options:[{id:'roll',label:'🎲 ทอยลูกเต๋า'}],label:'ทอยลูกเต๋า'};
+  this.broadcast();this.scheduleBots();
+ }catch(e){showErr('เริ่มตา: '+e.message);}},
+
+ raceAction:async function(pid,opt){
+  var S=this.S;if(S.phase!=='race'||this.resolving)return;
+  var R=S.race,A=R.awaiting;if(!A||A.pid!==pid)return;
+  var ok=false;for(var i=0;i<A.options.length;i++)if(A.options[i].id===opt)ok=true;
+  if(!ok)return;
+  var r=this.racerOf(pid),p=this.byPid(pid);if(!r)return;
+  this.resolving=true;
+  try{
+   if(A.kind==='pre'){
+    if(opt.indexOf('swap:')===0){
+     var tgt=this.racerOf(opt.slice(5));R.awaiting=null;this.broadcast();
+     await this.cast(r,'สลับตำแหน่ง!');
+     if(tgt&&!this.immune(tgt,false)){var a=r.pos,b=tgt.pos;r.pos=b;tgt.pos=a;
+      this.pushLog('🔮 '+p.name+' สลับตำแหน่งกับ '+this.byPid(tgt.pid).name);
+      this.hit(pid,'💫 สลับที่','ability');this.hit(tgt.pid,'💫 ถูกสลับ','ability');}
+     else this.pushLog('🛡️ เป้าหมายไม่ได้รับผลจากเวทมนตร์');
+     this.broadcast();await sleep(820);await this.afterLanding(r,true);return;}
+    R.awaiting={pid:pid,kind:'roll',options:[{id:'roll',label:'🎲 ทอยลูกเต๋า'}],label:'ทอยลูกเต๋า'};
+    this.broadcast();this.scheduleBots();return;}
+   if(A.kind==='roll'){
+    var c=this.activeChar(r);
+    if(c==='gambler'){var d1=1+ri(6),d2=1+ri(6);
+     R.dice=[d1,d2];R.awaiting=null;AU.s('roll');this.broadcast();await sleep(650);
+     if(d1===d2){R.die=d1+d2;
+      this.pushLog('🎲 '+p.name+' ทอยได้ '+d1+' และ '+d2+' — แต้มเท่ากัน! เดิน '+(d1+d2));
+      await this.cast(r,'ดับเบิล! เดิน '+(d1+d2));this.broadcast();
+      await this.doMove(r,d1+d2);return;}
+     R.awaiting={pid:pid,kind:'dice',options:[{id:'d:'+d1,label:'ใช้แต้ม '+d1},{id:'d:'+d2,label:'ใช้แต้ม '+d2}],label:'เลือกลูกเต๋า'};
+     this.broadcast();this.scheduleBots();return;}
+    var die=1+ri(6);R.die=die;R.awaiting=null;AU.s('roll');
+    this.broadcast();await sleep(600);await this.postRoll(r,die);return;}
+   if(A.kind==='dice'){var d=parseInt(opt.slice(2),10);R.die=d;R.awaiting=null;
+    this.broadcast();await sleep(420);await this.postRoll(r,d);return;}
+   if(A.kind==='coins'){var sp=parseInt(opt.slice(2),10);
+    r.coins-=sp;R.awaiting=null;this.broadcast();
+    if(sp>0){await this.cast(r,'จ่าย '+sp+' เหรียญ เดินเพิ่ม '+sp);this.hit(pid,'💰 +'+sp,'ability');}
+    await this.doMove(r,(R.die||0)+sp);return;}
+   if(A.kind==='target'){R.awaiting=null;this.broadcast();
+    if(opt!=='skip'){var t=this.racerOf(opt.slice(2));
+     await this.cast(r,'ผงเวทซุกซน!');
+     if(t&&!this.immune(t,true)){t.pos=Math.max(0,t.pos-3);
+      this.pushLog('🧚 '+p.name+' เสกให้ '+this.byPid(t.pid).name+' ถอยหลัง 3 ช่อง');
+      this.hit(t.pid,'🧚 −3 ช่อง','bad');}
+     else if(t){this.pushLog('🛡️ '+this.byPid(t.pid).name+' ไม่ได้รับผล');this.hit(t.pid,'🛡️ ต้านทาน','ability');}
+     this.broadcast();await sleep(780);}
+    await this.endOfTurnPassive(r);return this.endTurn();}
+  }catch(e){showErr('แก้ไขตา: '+e.message);
+   try{this.S.race.awaiting=null;this.endTurn();}catch(e2){}}
+  finally{this.resolving=false;}},
+
+ postRoll:async function(r,die){
+  var S=this.S,R=S.race,p=this.byPid(r.pid),c=this.activeChar(r);
+  this.pushLog('🎲 '+p.name+' ทอยได้ '+die);
+  var steps=die,note='',nd,total,cur,cnt,ahead,anyBehind;
+  switch(c){
+   case 'runner':steps=die+1;note='เร่งสปีด +1 ช่อง';break;
+   case 'golem':steps=3;note='ย่างก้าวศิลา เดิน 3 ช่อง';break;
+   case 'turtle':steps=4;note='คลานมั่นคง เดิน 4 ช่อง';break;
+   case 'treant':r.growth++;steps=1+r.growth;note='รากไม้เติบโต เดิน '+steps+' ช่อง';break;
+   case 'ninja':if(die%2===1){steps=die*2;note='เลขคี่! ทะยานสองเท่า = '+steps;}break;
+   case 'werewolf':if(die%2===0){steps=die*2;note='เลขคู่! พลังจันทรา สองเท่า = '+steps;}break;
+   case 'rabbit':if(die===1){steps=0;r.tripped=true;note='ออกตัวพลาด สะดุดล้ม!';}
+    else{steps=die*2;note='กระโจนสองเท่า = '+steps;}break;
+   case 'dwarf':if(die<3){steps=3;note='ขุดฝ่าไป ขั้นต่ำ 3 ช่อง';}break;
+   case 'ghost':if(die===1){steps=6;note='หลอนข้ามมิติ เดิน 6 ช่อง';}break;
+   case 'priest':ahead=R.racers.filter(function(x){return x!==r&&(x.finished||x.pos>r.pos);}).length;
+    if(ahead>0){steps=die+ahead;note='แสงศักดิ์สิทธิ์ +'+ahead+' ช่อง';}break;
+   case 'knight':anyBehind=R.racers.some(function(x){return x!==r&&!x.finished&&x.pos<r.pos;});
+    if(!anyBehind){steps=die+2;note='ฮึดสู้จากอันดับท้าย +2 ช่อง';}break;
+   case 'sylph':total=die;cur=die;cnt=0;
+    while(cur>=5&&cnt<5){nd=1+ri(6);total+=nd;cnt++;cur=nd;this.pushLog('🍃 ทอยซ้ำได้ '+nd);}
+    steps=total;if(cnt>0)note='กระแสลมพัดต่อ! รวม '+total+' ช่อง';break;
+   case 'merchant':if(r.coins>0){var opts=[],mx=Math.min(3,r.coins);
+    for(var k=0;k<=mx;k++)opts.push({id:'c:'+k,label:(k===0?'ไม่จ่ายเหรียญ':'จ่าย '+k+' เหรียญ (+'+k+')')});
+    R.awaiting={pid:r.pid,kind:'coins',options:opts,label:'มี '+r.coins+' เหรียญ'};
+    this.broadcast();this.scheduleBots();return;}break;}
+  if(note){await this.cast(r,note,(c==='rabbit'&&die===1)?'bad':'ability');
+   if(c==='rabbit'&&die===1)this.hit(r.pid,'💥 ล้ม!','bad');
+   this.broadcast();}
+  await this.doMove(r,steps);},
+
+ doMove:async function(r,steps){
+  var S=this.S,R=S.race,p=this.byPid(r.pid),c=this.activeChar(r),self=this;
+  R.awaiting=null;
+  if(steps<=0){this.broadcast();await sleep(450);await this.endOfTurnPassive(r);return this.endTurn();}
+  var from=r.pos,to=Math.min(GOAL,from+steps);
+  var passed=R.racers.filter(function(x){return x!==r&&!x.finished&&x.pos>from&&x.pos<to;});
+  r.pos=to;AU.s('run');this.broadcast();
+  await sleep(Math.min(900,420+Math.abs(to-from)*95));
+  if(passed.length){
+   if(c==='thief'){await this.cast(r,'ฉกระยะคนที่แซง!');
+    passed.forEach(function(x){if(!self.immune(x,true)){x.pos=Math.max(0,x.pos-1);self.hit(x.pid,'🥷 −1 ช่อง','bad');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    this.pushLog('🥷 '+p.name+' ฉกระยะจากคนที่วิ่งผ่าน '+passed.length+' คน');
+    this.broadcast();await sleep(720);}
+   else if(c==='vampire'){var g=passed.length;
+    await this.cast(r,'ดูดพลัง +'+g+' ช่อง');
+    passed.forEach(function(x){self.hit(x.pid,'🩸 ถูกดูดพลัง','bad');});
+    r.pos=Math.min(GOAL,r.pos+g);
+    this.pushLog('🧛 '+p.name+' ดูดพลังได้อีก '+g+' ช่อง');
+    this.hit(r.pid,'🧛 +'+g,'ability');this.broadcast();await sleep(760);}
+   else if(c==='icegiant'){await this.cast(r,'ลมหายใจน้ำแข็ง!','bad');
+    passed.forEach(function(x){if(!self.immune(x,false)){x.tripped=true;self.hit(x.pid,'❄️ แช่แข็ง','bad');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    this.pushLog('❄️ '+p.name+' แช่แข็งนักวิ่งที่วิ่งผ่าน '+passed.length+' คน');
+    this.broadcast();await sleep(720);}}
+  await this.afterLanding(r,false);},
+
+ afterLanding:async function(r,fromSwap){
+  var S=this.S,R=S.race,p=this.byPid(r.pid),c=this.activeChar(r),self=this;
+  if(r.pos>=GOAL){await this.finishRacer(r);return this.endTurn();}
+  var same=R.racers.filter(function(x){return x!==r&&!x.finished&&x.pos===r.pos;});
+  if(same.length&&!fromSwap){
+   if(c==='assassin'){await this.cast(r,'ลอบสังหาร!','bad');
+    same.forEach(function(x){if(!self.immune(x,true)){x.pos=0;self.hit(x.pid,'🗡️ กลับจุดเริ่มต้น','bad');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    this.pushLog('🗡️ '+p.name+' ส่งคู่แข่งกลับจุดเริ่มต้น!');this.broadcast();await sleep(860);}
+   else if(c==='giant'){await this.cast(r,'ทุบพื้นสะเทือน!','bad');
+    same.forEach(function(x){if(!self.immune(x,true)){x.pos=Math.max(0,x.pos-3);self.hit(x.pid,'👹 −3 ช่อง','bad');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    this.pushLog('👹 '+p.name+' ทุบคู่แข่งถอยหลัง 3 ช่อง');this.broadcast();await sleep(780);}
+   else if(c==='icegiant'){await this.cast(r,'เยือกแข็งทั้งช่อง!','bad');
+    same.forEach(function(x){if(!self.immune(x,false)){x.tripped=true;self.hit(x.pid,'❄️ แช่แข็ง','bad');}});
+    this.broadcast();await sleep(720);}
+   else if(c==='bee'){await this.cast(r,'บินต่ออีก 2 ช่อง!');
+    r.pos=Math.min(GOAL,r.pos+2);this.hit(r.pid,'🐝 +2 ช่อง','ability');
+    this.pushLog('🐝 '+p.name+' บินต่ออีก 2 ช่อง');this.broadcast();await sleep(720);
+    if(r.pos>=GOAL){await this.finishRacer(r);return this.endTurn();}}
+   for(var i=0;i<same.length;i++){
+    if(this.activeChar(same[i])==='turtle'&&!this.immune(r,false)&&!r.tripped){
+     r.tripped=true;this.skill(same[i].pid,'turtle','🐢 เกราะสะท้อน!');
+     this.hit(r.pid,'💥 สะดุดล้ม','bad');AU.s('bad');
+     this.pushLog('🐢 '+p.name+' สะดุดเกราะของเต่าเกราะเพชร');
+     this.broadcast();await sleep(760);}}}
+  if(c==='princess'){
+   var ch2=R.racers.filter(function(x){return x!==r&&!x.finished&&x.pos>r.pos&&x.pos-r.pos<=3;});
+   if(ch2.length){await this.cast(r,'เสน่ห์สะกดใจ!');var mv=0;
+    ch2.forEach(function(x){if(!self.immune(x,true)){x.pos=r.pos;mv++;self.hit(x.pid,'👑 ถูกสะกด','ability');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    if(mv)this.pushLog('👑 '+p.name+' สะกดนักวิ่ง '+mv+' คนให้ถอยกลับมาหาเธอ');
+    this.broadcast();await sleep(800);}}
+  if(c==='dragon'){
+   var near=R.racers.filter(function(x){return x!==r&&!x.finished&&Math.abs(x.pos-r.pos)<=2;});
+   if(near.length){await this.cast(r,'พ่นเปลวเพลิง!','bad');var cn=0;
+    near.forEach(function(x){if(!self.immune(x,true)){x.pos=Math.max(0,x.pos-2);cn++;self.hit(x.pid,'🔥 −2 ช่อง','bad');}
+     else self.hit(x.pid,'🛡️ ต้านทาน','ability');});
+    if(cn)this.pushLog('🐉 '+p.name+' พ่นไฟผลัก '+cn+' คนถอยหลัง 2 ช่อง');
+    this.broadcast();await sleep(800);}}
+  await this.spaceEffect(r);
+  if(r.finished)return this.endTurn();
+  if(c==='fairy'){
+   var others=R.racers.filter(function(x){return x!==r&&!x.finished;});
+   if(others.length){var opts=[{id:'skip',label:'ไม่ใช้ความสามารถ'}];
+    others.sort(function(a,b){return b.pos-a.pos;}).forEach(function(x){
+     opts.push({id:'t:'+x.pid,label:'🧚 ส่ง '+self.byPid(x.pid).name+' ถอย 3 (ช่อง '+x.pos+')'});});
+    R.awaiting={pid:r.pid,kind:'target',options:opts,label:'เลือกเป้าหมาย'};
+    this.broadcast();this.scheduleBots();return;}}
+  await this.endOfTurnPassive(r);
+  return this.endTurn();},
+
+ spaceEffect:async function(r){
+  var R=this.S.race,p=this.byPid(r.pid),sp=spaceAt(R.track,r.pos);
+  if(!sp)return;
+  if(sp.t==='arrow'){r.pos=clamp(r.pos+sp.v,0,GOAL);
+   this.pushLog('➡️ '+p.name+' เหยียบลูกศร '+(sp.v>0?'+':'')+sp.v+' ช่อง');
+   this.hit(r.pid,(sp.v>0?'➡️ +'+sp.v:'⬅️ '+sp.v)+' ช่อง',sp.v>0?'ability':'bad');
+   AU.s(sp.v>0?'ability':'bad');this.broadcast();await sleep(800);
+   if(r.pos>=GOAL)await this.finishRacer(r);}
+  else if(sp.t==='trip'){if(!this.immune(r,false)){r.tripped=true;
+   this.pushLog('💥 '+p.name+' เหยียบช่องสะดุดและล้มลง');
+   this.hit(r.pid,'💥 สะดุดล้ม!','bad');AU.s('bad');this.broadcast();await sleep(740);}}
+  else if(sp.t==='star'){p.stars++;p.score++;
+   this.pushLog('⭐ '+p.name+' เก็บดาวได้ 1 คะแนน!');
+   this.hit(r.pid,'⭐ +1 คะแนน','ability');AU.s('star');this.broadcast();await sleep(740);}},
+
+ endOfTurnPassive:async function(r){var c=this.activeChar(r),p=this.byPid(r.pid);
+  if(c==='storm'){var L=this.leaderOther(r);
+   if(L&&L.pos>0){await this.cast(r,'เรียกสายฟ้า!','bad');
+    if(!this.immune(L,true)){L.pos=Math.max(0,L.pos-1);
+     this.pushLog('🌩️ '+p.name+' ฟ้าผ่าใส่ผู้นำ ถอย 1 ช่อง');this.hit(L.pid,'⚡ −1 ช่อง','bad');}
+    else this.hit(L.pid,'🛡️ ต้านทาน','ability');
+    this.broadcast();await sleep(720);}}},
+
+ finishRacer:async function(r){var R=this.S.race,p=this.byPid(r.pid);
+  if(r.finished)return;
+  r.finished=true;r.pos=GOAL;R.finished++;r.rank=R.finished;R.ranks.push(r.pid);
+  AU.s('finish');
+  this.pushLog('🏁 '+p.name+' เข้าเส้นชัยเป็นอันดับที่ '+r.rank+'!');
+  this.hit(r.pid,(r.rank===1?'🥇':'🥈')+' เข้าเส้นชัย!','finish');
+  this.broadcast();await sleep(1150);},
+
+ endTurn:async function(){try{
+  var S=this.S;if(S.phase!=='race')return;
+  var R=S.race,un=R.racers.filter(function(x){return !x.finished;});
+  if(R.finished>=2||un.length===0)return this.endRace();
+  if(R.finished===1&&un.length===1){
+   this.pushLog('🏁 เหลือนักวิ่งคนเดียว — ได้อันดับ 2 โดยปริยาย');
+   await this.finishRacer(un[0]);return this.endRace();}
+  R.idx=(R.idx+1)%R.order.length;
+  var self=this;setTimeout(function(){self.beginTurn();},280);
+ }catch(e){showErr('จบตา: '+e.message);}},
+
+ endRace:async function(){try{
+  var S=this.S,R=S.race,self=this;
+  if(S.phase==='raceend'||S.phase==='result'||S.phase==='gameend')return;
+  S.phase='raceend';
+  var gi=clamp(S.raceNum-1,0,3),rows=[];
+  R.ranks.forEach(function(pid,i){var p=self.byPid(pid),rr=self.racerOf(pid);
+   var pts=(i===0?GOLD[gi]:(i===1?SILVER[gi]:0));
+   p.score+=pts;if(i===0)p.golds++;else if(i===1)p.silvers++;
+   rows.push({pid:pid,name:p.name,color:p.color,ch:(rr.hatched||rr.ch),rank:i+1,pts:pts,pos:GOAL});});
+  R.racers.forEach(function(x){if(R.ranks.indexOf(x.pid)<0){var p=self.byPid(x.pid);
+   rows.push({pid:x.pid,name:p.name,color:p.color,ch:(x.hatched||x.ch),rank:0,pts:0,pos:x.pos});}});
+  rows.sort(function(a,b){if(a.rank&&b.rank)return a.rank-b.rank;
+   if(a.rank)return -1;if(b.rank)return 1;return b.pos-a.pos;});
+  var fin=(S.raceNum>=4);
+  S.lastResult={race:S.raceNum,rows:rows,final:fin,
+   standings:S.players.slice().sort(function(a,b){return b.score-a.score||b.golds-a.golds||b.silvers-a.silvers;})
+    .map(function(p){return {pid:p.pid,name:p.name,color:p.color,score:p.score,golds:p.golds,silvers:p.silvers,stars:p.stars};})};
+  S.phase=fin?'gameend':'result';S.gameOver=fin;
+  this.pushLog(fin?'🏆 จบการแข่งขันทั้งหมด!':'🏅 จบเลกที่ '+S.raceNum);
+  AU.s(fin?'victory':'finish');await sleep(950);
+  this.broadcast();this.scheduleBots();
+ }catch(e){showErr('สรุปผล: '+e.message);}},
+ nextRace:function(){if(this.S.phase!=='result')return;this.startSelect();},
+
+ scheduleBots:function(){var self=this,S=this.S;
+  if(this.botTimer){clearTimeout(this.botTimer);this.botTimer=null;}
+  if(!this.on||!S)return;
+  if(S.phase==='draft'){var p=this.byPid(S.draft.order[S.draft.idx]);
+   if(p&&(p.bot||p.auto))this.botTimer=setTimeout(function(){
+    if(S.phase==='draft'&&S.draft.order[S.draft.idx]===p.pid)self.botDraft(p);},750+ri(500));
+   return;}
+  if(S.phase==='select'){S.players.forEach(function(p,i){
+    if((p.bot||p.auto)&&!S.secret[p.pid])setTimeout(function(){
+     if(S.phase==='select'&&!S.secret[p.pid])self.botSelect(p);},700+i*300+ri(600));});
+   return;}
+  if(S.phase==='race'&&S.race&&S.race.awaiting){
+   var a=S.race.awaiting,pp=this.byPid(a.pid);
+   if(pp&&(pp.bot||pp.auto))this.botTimer=setTimeout(function(){
+    if(S.phase==='race'&&S.race.awaiting&&S.race.awaiting.pid===pp.pid)self.botAct(pp,S.race.awaiting);},820+ri(700));
+   return;}
+  if(S.phase==='result'){var h=S.players[0];
+   if(h&&(h.bot||h.auto))this.botTimer=setTimeout(function(){self.nextRace();},3000);}},
+ botDraft:function(p){var pool=this.S.draft.pool;if(!pool.length)return;
+  var best=pool.slice().sort(function(a,b){return (CH[b].r+ri(3))-(CH[a].r+ri(3));})[0];
+  this.draftPick(p.pid,best);},
+ botSelect:function(p){var S=this.S;
+  var av=p.team.filter(function(c){return p.used.indexOf(c)<0;});
+  if(!av.length)return;
+  var so=av.slice().sort(function(a,b){return CH[b].r-CH[a].r;}),ch;
+  if(S.raceNum>=4)ch=so[0];
+  else if(Math.random()<0.5)ch=so[so.length-1];
+  else ch=pick(so);
+  this.selectRacer(p.pid,ch);},
+ botAct:function(p,A){var self=this,R=this.S.race,r=this.racerOf(p.pid);
+  if(!r)return;
+  var choice=A.options[0].id,best,i;
+  if(A.kind==='pre'){var sw=A.options.filter(function(o){return o.id.indexOf('swap:')===0;});
+   best=null;sw.forEach(function(o){var t=self.racerOf(o.id.slice(5));
+    if(t&&(!best||t.pos>best.t.pos))best={o:o,t:t};});
+   if(best&&best.t.pos-r.pos>=4)choice=best.o.id;}
+  else if(A.kind==='dice'){var vs=A.options.map(function(o){return parseInt(o.id.slice(2),10);});
+   var c=this.activeChar(r),sc=function(v){
+    if(c==='ninja'&&v%2===1)return v*2;
+    if(c==='werewolf'&&v%2===0)return v*2;
+    if(c==='rabbit')return v===1?-5:v*2;return v;};
+   choice='d:'+(sc(vs[0])>=sc(vs[1])?vs[0]:vs[1]);}
+  else if(A.kind==='coins'){var near=(r.pos+(R.die||0)+3)>=GOAL;
+   var mx=A.options[A.options.length-1];
+   choice=near?mx.id:(r.coins>=4?'c:'+Math.min(2,r.coins):'c:0');
+   var has=false;for(i=0;i<A.options.length;i++)if(A.options[i].id===choice)has=true;
+   if(!has)choice=A.options[0].id;}
+  else if(A.kind==='target'){best=null;
+   A.options.forEach(function(o){if(o.id.indexOf('t:')!==0)return;
+    var t=self.racerOf(o.id.slice(2));if(t&&(!best||t.pos>best.t.pos))best={o:o,t:t};});
+   choice=best?best.o.id:'skip';}
+  this.raceAction(p.pid,choice);}
+};
+
+/* ============ CLIENT ============ */
+var CLIENT={myPid:null,view:null,lastSeq:-1,seq:0,myPickTemp:null,
+ reset:function(){this.myPid=null;this.view=null;this.lastSeq=-1;this.seq=0;this.myPickTemp=null;
+  UI.boardKey='';UI.gridKey='';UI.resetAnim();},
+ send:function(a){this.seq++;
+  if(HOST.on&&(GAME.mode==='solo'||NET.isHost))HOST.handleAction(this.myPid,a);
+  else NET.sendToHost({t:'action',seq:this.seq,a:a});},
+ onHostMessage:function(m){if(!m)return;
+  if(m.t==='welcome'){this.myPid=m.pid;GAME.code=m.code;
+   try{sessionStorage.setItem('ma_name',GAME.myName);sessionStorage.setItem('ma_code',m.code);}catch(e){}
+   if(m.rejoin)toast('เชื่อมต่อกลับเข้าเกมแล้ว');return;}
+  if(m.t==='deny'){toast(m.msg||'เข้าร่วมไม่ได้');showScreen('sc-menu');return;}
+  if(m.t==='fx'){UI.spawnFx(m.pid,m.txt,m.kind);return;}
+  if(m.t==='skill'){UI.castFx(m.pid,m.ch,m.txt);return;}
+  if(m.t==='state'){
+   if(typeof m.stateSeq==='number'){if(m.stateSeq<=this.lastSeq)return;this.lastSeq=m.stateSeq;}
+   if(this.view&&this.view.phase!=='select'&&m.view.phase==='select')this.myPickTemp=null;
+   this.view=m.view;UI.render(m.view);return;}},
+ onDisconnected:function(){
+  if(!GAME.code||GAME.mode!=='online'||NET.isHost)return;
+  toast('การเชื่อมต่อหลุด — กำลังเชื่อมต่อใหม่…');
+  var n=GAME.myName,c=GAME.code;
+  setTimeout(function(){NET.destroy();
+   NET.join(c,n,function(err){toast(err?('เชื่อมต่อใหม่ไม่สำเร็จ: '+err):'เชื่อมต่อกลับสำเร็จ');});},1800);}
+};
+
+/* ============ UI ============ */
+var GAME={mode:null,myName:'',code:null,botCount:4};
+function showScreen(id){var ss=document.querySelectorAll('.screen');
+ for(var i=0;i<ss.length;i++)ss[i].classList.toggle('active',ss[i].id===id);
+ if(id==='sc-race')setTimeout(function(){UI.fitBoard();},30);}
+
+var UI={
+ lastPhase:'',boardKey:'',gridKey:'',cell:44,
+ tokens:{},bars:{},offs:{},shown:{},anim:{},
+ resetAnim:function(){var k;for(k in this.anim)if(this.anim[k])clearInterval(this.anim[k]);
+  this.anim={};this.shown={};this.offs={};},
+
+ render:guard(function(v){
+  if(!v)return;
+  $('chipRoom').style.display=(v.mode==='online')?'flex':'none';
+  $('roomCode').textContent=v.code||'-----';
+  $('chipRace').style.display=(v.phase!=='lobby'&&v.phase!=='draft')?'flex':'none';
+  $('raceNum').textContent=v.raceNum||1;
+  $('chipPhase').style.display='flex';
+  $('phaseName').textContent={lobby:'🚪 ห้องรอ',draft:'📜 ดราฟต์',select:'🤫 เลือกลับ',reveal:'✨ เปิดเผย',
+   race:'🏃 กำลังแข่ง',raceend:'🏁 จบเลก',result:'🏅 ผลเลก',gameend:'🏆 สรุปผล'}[v.phase]||'—';
+  if(v.phase==='lobby')this.renderLobby(v);
+  else if(v.phase==='draft')this.renderDraft(v);
+  else if(v.phase==='select')this.renderSelect(v);
+  else if(v.phase==='reveal')this.renderReveal(v);
+  else if(v.phase==='race'||v.phase==='raceend')this.renderRace(v);
+  else if(v.phase==='result'||v.phase==='gameend')this.renderResult(v);
+  this.lastPhase=v.phase;
+ },'แสดงผล:'),
+
+ renderLobby:function(v){showScreen('sc-lobby');
+  $('lobbyCode').textContent=v.code||'-----';
+  var h=$('lobbyList');h.textContent='';
+  v.players.forEach(function(p,i){var row=el('div','prow');
+   var d=el('div','dot');d.style.background=p.color;d.style.color=p.color;row.appendChild(d);
+   row.appendChild(el('span',null,p.name));
+   if(i===0)row.appendChild(el('span','tag gd','เจ้าของห้อง'));
+   if(p.bot)row.appendChild(el('span','tag','บอท'));
+   if(!p.connected)row.appendChild(el('span','tag off','หลุดการเชื่อมต่อ'));
+   row.appendChild(el('span','spacer'));
+   row.appendChild(el('span','tag','ที่นั่ง '+(i+1)));
+   h.appendChild(row);});
+  var isH=v.players.length&&v.players[0].pid===v.myPid;
+  $('btnStartGame').style.display=isH?'inline-block':'none';
+  $('btnStartGame').disabled=v.players.length<2;
+  $('lobbyHint').textContent=isH?(v.players.length<2?'ต้องมีผู้เล่นอย่างน้อย 2 คนจึงจะเริ่มได้':'พร้อมเริ่มแล้ว! ('+v.players.length+'/6 คน)')
+   :'รอเจ้าของห้องกดเริ่มเกม… ('+v.players.length+'/6 คน)';},
+
+ makeCard:function(id,clickable){var c=CH[id],card=el('div','card');
+  card.style.setProperty('--cc',c.c+'55');
+  card.appendChild(el('div','ava',c.i));
+  card.appendChild(el('div','cname',c.n));
+  card.appendChild(el('div','cdesc',c.d));
+  var pw=el('div','power');
+  for(var i=0;i<9;i++){var d=el('i');if(i<c.r)d.className='on';pw.appendChild(d);}
+  card.appendChild(pw);
+  if(!clickable)card.style.cursor='default';
+  return card;},
+
+ renderDraft:function(v){showScreen('sc-draft');
+  var D=v.draft,my=(D.cur===v.myPid);
+  var cur=v.players.filter(function(p){return p.pid===D.cur;})[0];
+  $('draftTurn').textContent=(my?'🎯 ตาของคุณเลือก!':'⏳ รอ '+(cur?cur.name:'…'))+' · รอบ '+D.round+'/4';
+  var pool=$('draftPool');pool.textContent='';
+  D.pool.forEach(function(id){var card=UI.makeCard(id,true);
+   if(!my)card.classList.add('dis');
+   card.onclick=function(){if(!my)return;AU.unlock();AU.s('click');CLIENT.send({type:'draftPick',ch:id});};
+   pool.appendChild(card);});
+  var tm=$('draftTeams');tm.textContent='';
+  v.players.forEach(function(p){var box=el('div','prow');
+   if(p.pid===D.cur)box.style.borderColor='var(--gold)';
+   var d=el('div','dot');d.style.background=p.color;d.style.color=p.color;box.appendChild(d);
+   var w=el('div');w.style.flex='1';w.style.minWidth='0';
+   w.appendChild(el('div','pbname',p.name+(p.bot?' 🤖':'')+(p.pid===v.myPid?' (คุณ)':'')));
+   var mt=el('div','miniteam');
+   p.team.forEach(function(t){var m=el('div','mini',CH[t].i);m.title=CH[t].n;mt.appendChild(m);});
+   for(var k=p.team.length;k<4;k++)mt.appendChild(el('div','mini','·'));
+   w.appendChild(mt);box.appendChild(w);tm.appendChild(box);});},
+
+ renderSelect:function(v){showScreen('sc-select');
+  var me=v.players.filter(function(p){return p.pid===v.myPid;})[0],S=v.select;
+  $('selInfo').textContent='เลกที่ '+v.raceNum+'/4 · '+(trackOf(v.raceNum)==='wild'?'🌋 สนามป่าพิศวง':'🌿 สนามมาตรฐาน');
+  var pool=$('selPool');pool.textContent='';
+  if(me){me.team.forEach(function(id){
+   var used=me.used.indexOf(id)>=0,c=CH[id];
+   var card=el('div','selcard');
+   card.style.setProperty('--cc',c.c+'66');
+   if(used)card.classList.add('dis');
+   if(S.myPick===id||(!S.myPick&&CLIENT.myPickTemp===id))card.classList.add('sel');
+   if(S.myPick===id)card.appendChild(el('div','lockbadge','🔒 ยืนยันแล้ว'));
+   card.appendChild(el('div','ava',c.i));
+   card.appendChild(el('div','cname',c.n));
+   card.appendChild(el('div','cdesc',c.d));
+   var pw=el('div','power');
+   for(var i=0;i<9;i++){var dd=el('i');if(i<c.r)dd.className='on';pw.appendChild(dd);}
+   card.appendChild(pw);
+   if(used)card.appendChild(el('div','usedtag','— ลงแข่งไปแล้ว —'));
+   card.onclick=function(){
+    if(used||S.myPick)return;
+    AU.unlock();AU.s('click');
+    if(CLIENT.myPickTemp===id){CLIENT.send({type:'select',ch:id});return;}
+    CLIENT.myPickTemp=id;UI.renderSelect(v);};
+   pool.appendChild(card);});}
+  var st=$('selStatus');st.textContent='';
+  v.players.forEach(function(p){
+   var lk=S.locked.indexOf(p.pid)>=0;
+   var b=el('div','sbadge'+(lk?' ok':''));
+   var d=el('span','dot');d.style.cssText='width:9px;height:9px;background:'+p.color+';color:'+p.color;
+   b.appendChild(d);
+   b.appendChild(el('span',null,p.name+(p.bot?' 🤖':'')));
+   b.appendChild(el('span',null,lk?'✅':'⏳'));
+   st.appendChild(b);});
+  var btn=$('btnLockPick');
+  btn.disabled=!!S.myPick||!CLIENT.myPickTemp;
+  btn.textContent=S.myPick?'🔒 ยืนยันแล้ว — รอผู้เล่นอื่น':'✅ ยืนยันนักวิ่ง';
+  $('selMsg').textContent=S.locked.length+'/'+S.needed+' คน';},
+
+ renderReveal:function(v){showScreen('sc-reveal');
+  var g=$('revealGrid');g.textContent='';AU.s('reveal');
+  (v.reveal||[]).forEach(function(r,i){
+   var c=CH[r.ch]||{i:'❔',n:'ไม่ทราบ',d:''};
+   var card=el('div','revcard');
+   card.style.animationDelay=(i*0.13)+'s';card.style.borderColor=r.color;
+   card.style.boxShadow='0 12px 28px rgba(0,0,0,.45),0 0 26px '+r.color+'55';
+   card.appendChild(el('div','ava',c.i));
+   card.appendChild(el('div','cname',c.n));
+   card.appendChild(el('div','cdesc',c.d));
+   var nm=el('div','pbchar',r.name);nm.style.color=r.color;card.appendChild(nm);
+   g.appendChild(card);});},
+
+ /* ---------- BOARD ---------- */
+ fitBoard:function(){
+  var wrap=$('boardWrap'),b=$('board');
+  if(!wrap||!b)return;
+  var pad=16;
+  var w=wrap.clientWidth-pad,h=wrap.clientHeight-pad;
+  var s=Math.max(150,Math.min(w,h));
+  b.style.width=s+'px';b.style.height=s+'px';
+  this.cell=s/COLS;
+  b.style.setProperty('--cell',this.cell+'px');
+  var k;for(k in this.tokens)this.place(k,this.shown[k]||0);},
+
+ buildBoard:function(v){
+  var R=v.race,cells=$('cells'),toks=$('toks'),self=this;
+  this.resetAnim();
+  cells.textContent='';toks.textContent='';this.tokens={};
+  var pts=[],i;
+  for(i=0;i<=GOAL;i++){var rc=cellRC(i);pts.push((rc.c+0.5)+','+(rc.r+0.5));}
+  var ps=pts.join(' ');
+  $('pOuter').setAttribute('points',ps);
+  $('pMid').setAttribute('points',ps);
+  $('pFlow').setAttribute('points',ps);
+  for(i=0;i<=GOAL;i++){
+   var rc=cellRC(i),c=el('div','cell');
+   c.style.gridRow=String(rc.r+1);c.style.gridColumn=String(rc.c+1);
+   if(i>0&&i<GOAL)c.appendChild(el('div','cnum',String(i)));
+   if(i===0){c.classList.add('start');
+    c.appendChild(el('div','cico','🚩'));c.appendChild(el('div','clabel','เริ่ม'));}
+   else if(i===GOAL){c.classList.add('finish');
+    c.appendChild(el('div','cico','🏆'));c.appendChild(el('div','clabel','เส้นชัย'));}
+   else{var sp=spaceAt(R.track,i);
+    if(sp){if(sp.t==='star'){c.classList.add('sp-star');c.appendChild(el('div','cico','⭐'));
+      c.appendChild(el('div','clabel','+1 แต้ม'));}
+     else if(sp.t==='trip'){c.classList.add('sp-trip');c.appendChild(el('div','cico','💥'));
+      c.appendChild(el('div','clabel','สะดุด'));}
+     else if(sp.v>0){c.classList.add('sp-fwd');c.appendChild(el('div','cico','➡️'));
+      c.appendChild(el('div','clabel','+'+sp.v));}
+     else{c.classList.add('sp-back');c.appendChild(el('div','cico','⬅️'));
+      c.appendChild(el('div','clabel',String(sp.v)));}}}
+   cells.appendChild(c);}
+  R.racers.forEach(function(r){
+   var p=v.players.filter(function(x){return x.pid===r.pid;})[0];
+   var t=el('div','tok',chIcon(r.ch));
+   t.style.background='linear-gradient(160deg,'+p.color+',rgba(8,3,28,.65))';
+   t.style.setProperty('--pc',p.color);
+   toks.appendChild(t);
+   self.tokens[r.pid]=t;self.shown[r.pid]=r.pos;self.offs[r.pid]={i:0,n:1};});
+  this.fitBoard();},
+
+ place:function(pid,idx){
+  var t=this.tokens[pid];if(!t)return;
+  idx=clamp(idx||0,0,GOAL);
+  var cell=this.cell||44,rc=cellRC(idx),o=this.offs[pid]||{i:0,n:1};
+  var tab=STACK[clamp(o.n,1,6)]||STACK[1];
+  var off=tab[clamp(o.i,0,tab.length-1)]||[0,0];
+  var x=(rc.c+0.5+off[0])*cell,y=(rc.r+0.5+off[1])*cell;
+  t.style.left=x+'px';t.style.top=y+'px';
+  t.style.setProperty('--ts',o.n<=2?'1':(o.n<=4?'.86':'.76'));
+  t._x=x;t._y=y;},
+
+ moveToken:function(pid,target){
+  var self=this,t=this.tokens[pid];if(!t)return;
+  if(this.shown[pid]===undefined)this.shown[pid]=target;
+  if(this.anim[pid]){clearInterval(this.anim[pid]);this.anim[pid]=null;}
+  var cur=this.shown[pid];
+  if(cur===target){this.place(pid,cur);return;}
+  var dir=(target>cur)?1:-1,diff=Math.abs(target-cur);
+  var step=clamp(Math.round(620/diff),55,140);
+  t.style.transitionDuration=Math.round(step*0.85)+'ms';
+  var tick=function(){cur+=dir;self.shown[pid]=cur;self.place(pid,cur);
+   if(cur===target){clearInterval(self.anim[pid]);self.anim[pid]=null;
+    t.style.transitionDuration='120ms';}};
+  tick();
+  if(cur!==target)this.anim[pid]=setInterval(tick,step);},
+
+ renderRace:function(v){
+  showScreen('sc-race');
+  var R=v.race,self=this;if(!R)return;
+  $('raceTrackType').textContent=(R.track==='wild'?'🌋 สนามป่าพิศวง · ⭐💥➡️':'🌿 สนามมาตรฐาน');
+  var strip=$('turnStrip'),skey=R.num+'|'+R.order.join(',');
+  if(strip._key!==skey){strip.textContent='';strip._key=skey;strip._map={};
+   R.order.forEach(function(pid,i){
+    var p=v.players.filter(function(x){return x.pid===pid;})[0];
+    var c=el('div','tchip');
+    c.appendChild(el('span','num',(i+1)+'.'));
+    var d=el('span','dot');d.style.cssText='width:9px;height:9px;background:'+p.color+';color:'+p.color;
+    c.appendChild(d);
+    var ic=el('span',null,'❔');c.appendChild(ic);
+    c.appendChild(el('span',null,p.name+(p.bot?' 🤖':'')));
+    strip.appendChild(c);strip._map[pid]={c:c,ic:ic};});}
+  R.racers.forEach(function(r){var m=strip._map[r.pid];if(!m)return;
+   m.ic.textContent=chIcon(r.ch);
+   m.c.classList.toggle('cur',R.curPid===r.pid&&!r.finished);
+   m.c.classList.toggle('fin',r.finished);});
+
+  var bkey=R.num+'|'+R.racers.map(function(r){return r.pid;}).join(',');
+  if(this.boardKey!==bkey){this.boardKey=bkey;this.buildBoard(v);}
+
+  var groups={};
+  R.racers.forEach(function(r){var k='k'+r.pos;(groups[k]=groups[k]||[]).push(r.pid);});
+  R.racers.forEach(function(r){
+   var g=groups['k'+r.pos];
+   self.offs[r.pid]={i:g.indexOf(r.pid),n:g.length};});
+  R.racers.forEach(function(r){
+   var t=self.tokens[r.pid];if(!t)return;
+   t.textContent=chIcon(r.ch);
+   t.classList.toggle('trip',!!r.tripped&&!r.finished);
+   t.classList.toggle('act',R.curPid===r.pid&&!r.finished);
+   t.classList.toggle('fin',!!r.finished);
+   self.moveToken(r.pid,r.pos);});
+
+  var gkey=R.num+'|'+v.players.map(function(p){return p.pid;}).join(',');
+  var grid=$('playerGrid');
+  if(this.gridKey!==gkey){this.gridKey=gkey;grid.textContent='';this.bars={};
+   v.players.forEach(function(p){
+    var card=el('div','pbcard');card.style.setProperty('--pc',p.color);
+    var top=el('div','pbtop');
+    var ava=el('span','pbava','❔');top.appendChild(ava);
+    top.appendChild(el('span','pbname',p.name+(p.bot?' 🤖':'')+(p.pid===v.myPid?' (คุณ)':'')));
+    var sc=el('span','pbsc','0');top.appendChild(sc);
+    card.appendChild(top);
+    var ch=el('div','pbchar','—');card.appendChild(ch);
+    var de=el('div','pbdesc','');card.appendChild(de);
+    var mt=el('div','pbmeta','');card.appendChild(mt);
+    grid.appendChild(card);
+    self.bars[p.pid]={card:card,ava:ava,ch:ch,de:de,mt:mt,sc:sc};});}
+  v.players.forEach(function(p){
+   var b=self.bars[p.pid];if(!b)return;
+   var r=R.racers.filter(function(x){return x.pid===p.pid;})[0];
+   b.sc.textContent=String(p.score);
+   b.card.classList.toggle('cur',R.curPid===p.pid);
+   b.card.classList.toggle('off',!p.connected);
+   if(r){var shown=r.copy?r.copy:r.ch;
+    b.ava.textContent=chIcon(r.ch);
+    b.ch.textContent=chName(r.ch)+(r.copy?(' → '+chName(r.copy)):'');
+    b.ch.style.color=chColor(shown);
+    b.de.textContent=(r.ch==='egg'&&!r.hatched)?'🔒 ยังไม่ฟัก — ความสามารถเป็นความลับจากทุกคน':chDesc(shown);
+    var mt='📍 ช่อง '+r.pos+'/'+GOAL;
+    if(r.coins>0)mt+=' · 💰'+r.coins;
+    if(r.tripped)mt+=' · 🤕 ล้ม';
+    if(!p.connected)mt+=' · 🔌';
+    if(r.finished)mt+=' · '+(r.rank===1?'🥇 ที่ 1':'🥈 ที่ 2');
+    b.mt.textContent=mt;}});
+
+  var db=$('dieBox');
+  var dt=(R.die!=null)?String(R.die):(R.dice?R.dice.join('/'):'🎲');
+  if(db.textContent!==dt){db.textContent=dt;db.classList.remove('roll');void db.offsetWidth;db.classList.add('roll');}
+  var A=R.awaiting,cur=v.players.filter(function(p){return p.pid===R.curPid;})[0];
+  var my=!!(A&&A.pid===v.myPid);
+  $('phaseMsg').textContent=(v.phase==='raceend')?'🏁 จบเลก กำลังสรุปผล…'
+   :(my?('🎯 ตาของคุณ — '+(A.label||'')):('⏳ ตาของ '+(cur?cur.name:'…')+((cur&&(cur.bot||cur.auto))?' 🤖':'')));
+  $('logline').textContent=(v.log&&v.log.length)?v.log[v.log.length-1]:'';
+  var ab=$('actBtns'),akey=my?(A.kind+'|'+A.options.map(function(o){return o.id;}).join(',')):'';
+  if(ab._key!==akey){ab.textContent='';ab._key=akey;
+   if(my)A.options.forEach(function(o){
+    var b=el('button','btn'+((o.id==='roll')?'':' sec'),o.label);
+    b.onclick=function(){AU.unlock();AU.s('click');ab.textContent='';ab._key='#sent';
+     CLIENT.send({type:'act',opt:o.id});};
+    ab.appendChild(b);});}},
+
+ spawnFx:function(pid,txt,kind){try{
+  var t=this.tokens[pid];if(!t)return;
+  var host=$('toks');
+  var f=el('div','fx',txt);
+  f.style.left=(t._x||0)+'px';f.style.top=(t._y||0)+'px';
+  f.style.color=(kind==='bad')?'#ff8fa6':((kind==='finish')?'#ffd36e':'#9cf2ff');
+  host.appendChild(f);setTimeout(function(){f.remove();},1300);
+  if(kind==='bad'){t.classList.remove('hit');void t.offsetWidth;t.classList.add('hit');}
+  var s=el('div','shock');
+  s.style.left=(t._x||0)+'px';s.style.top=(t._y||0)+'px';
+  s.style.borderColor=(kind==='bad')?'#ff5f95':((kind==='finish')?'#ffd36e':'#57d9ff');
+  host.appendChild(s);setTimeout(function(){s.remove();},880);
+  var b=this.bars[pid];
+  if(b)b.card.style.setProperty('--sc',(kind==='bad')?'#ff5f95':'#57d9ff');
+ }catch(e){}},
+
+ castFx:function(pid,ch,txt){try{
+  var col=chColor(ch),t=this.tokens[pid];
+  if(t){t.style.setProperty('--sc',col);
+   t.classList.remove('cast');void t.offsetWidth;t.classList.add('cast');
+   setTimeout(function(){t.classList.remove('cast');},1750);}
+  var b=this.bars[pid];
+  if(b){b.card.style.setProperty('--sc',col);
+   b.card.classList.remove('cast');void b.card.offsetWidth;b.card.classList.add('cast');
+   setTimeout(function(){b.card.classList.remove('cast');},1500);}
+  var sc=$('skillCast');
+  sc.style.setProperty('--sc',col);sc.textContent=txt;sc.classList.add('show');
+  clearTimeout(sc._t);sc._t=setTimeout(function(){sc.classList.remove('show');},1500);
+ }catch(e){}},
+
+ renderResult:function(v){showScreen('sc-result');
+  var res=v.result;if(!res)return;
+  var fin=(v.phase==='gameend'),gi=clamp(res.race-1,0,3);
+  $('resTitle').textContent=fin?'🏆 สรุปผลมหกรรมกีฬาเวทมนตร์':'🏅 ผลการแข่งขันเลกที่ '+res.race;
+  $('resSub').textContent=fin?('🎉 ผู้ชนะคือ '+(res.standings[0]?res.standings[0].name:'-')+'!')
+   :('คะแนนเลกนี้ 🥇 '+GOLD[gi]+' แต้ม · 🥈 '+SILVER[gi]+' แต้ม');
+  var body=$('resBody');body.textContent='';
+  body.appendChild(el('h3',null,'ผลเลกที่ '+res.race));
+  res.rows.forEach(function(r){
+   var row=el('div','prow2'+(r.rank===1?' g1':(r.rank===2?' g2':'')));
+   row.appendChild(el('span',null,r.rank===1?'🥇':(r.rank===2?'🥈':'—')));
+   var d=el('div','dot');d.style.background=r.color;d.style.color=r.color;row.appendChild(d);
+   var w=el('div','who');
+   w.appendChild(el('div','nm',r.name));
+   w.appendChild(el('div','sub',chIcon(r.ch)+' '+chName(r.ch)+(r.rank?'':(' · ไปถึงช่อง '+(r.pos||0)))));
+   row.appendChild(w);
+   row.appendChild(el('div','sc',r.pts?('+'+r.pts):'0'));
+   body.appendChild(row);});
+  body.appendChild(el('h3',null,'คะแนนรวม'));
+  res.standings.forEach(function(s,i){
+   var row=el('div','prow2'+(i===0?' g1':''));
+   row.appendChild(el('span',null,(i+1)+'.'));
+   var d=el('div','dot');d.style.background=s.color;d.style.color=s.color;row.appendChild(d);
+   var w=el('div','who');
+   w.appendChild(el('div','nm',s.name));
+   w.appendChild(el('div','sub','🥇 '+s.golds+' · 🥈 '+s.silvers+' · ⭐ '+s.stars));
+   row.appendChild(w);
+   row.appendChild(el('div','sc',String(s.score)));
+   body.appendChild(row);});
+  var isH=v.players.length&&v.players[0].pid===v.myPid;
+  $('btnNextRace').style.display=(!fin&&isH)?'inline-block':'none';
+  $('btnBackMenu').style.display=fin?'inline-block':'none';
+  $('resHint').textContent=fin?'ขอบคุณที่ร่วมมหกรรมกีฬาเวทมนตร์!':(isH?'':'รอเจ้าของห้องกดไปเลกถัดไป…');
+  if(fin&&this.lastPhase!=='gameend'){fireworks(8);AU.s('victory');}}
+};
+
+/* ============ MENU ACTIONS ============ */
+var BOTNAMES=['เซเรน่า','ก็อตเฟรย์','มิลก้า','โอริออน','ลูน่า','ไครอส','เวก้า','ซาฟิร่า'];
+function getName(){var n=($('inName').value||'').trim();
+ if(!n){n='นักกีฬา'+(100+ri(900));$('inName').value=n;}
+ return n.slice(0,12);}
+function startSolo(){AU.unlock();
+ GAME.mode='solo';GAME.myName=getName();GAME.code='SOLO';
+ NET.destroy();CLIENT.reset();
+ HOST.newGame('solo','SOLO');
+ var me=HOST.addPlayer(GAME.myName,false);CLIENT.myPid=me.pid;
+ var nm=shuffle(BOTNAMES.slice());
+ for(var i=1;i<GAME.botCount;i++)HOST.addPlayer(nm[i-1],true);
+ HOST.startGame();}
+function createRoom(){AU.unlock();
+ if(!NET.available()){toast('โหมดออนไลน์ไม่พร้อมใช้งาน');return;}
+ GAME.myName=getName();
+ var code=NET.makeCode();toast('กำลังสร้างห้อง…');
+ NET.host(code,function(err){
+  if(err){toast(err);return;}
+  GAME.mode='online';GAME.code=code;CLIENT.reset();
+  HOST.newGame('online',code);
+  var me=HOST.addPlayer(GAME.myName,false);CLIENT.myPid=me.pid;
+  try{sessionStorage.setItem('ma_name',GAME.myName);sessionStorage.setItem('ma_code',code);}catch(e){}
+  try{history.replaceState(null,'','#'+code);}catch(e){}
+  HOST.broadcast();toast('สร้างห้องสำเร็จ: '+code);});}
+function joinRoom(){AU.unlock();
+ if(!NET.available()){toast('โหมดออนไลน์ไม่พร้อมใช้งาน');return;}
+ var code=($('inCode').value||'').trim().toUpperCase();
+ if(code.length!==5){toast('กรุณาใส่รหัสห้อง 5 ตัวอักษร');return;}
+ GAME.myName=getName();GAME.mode='online';GAME.code=code;
+ HOST.on=false;CLIENT.reset();toast('กำลังเชื่อมต่อ…');
+ NET.join(code,GAME.myName,function(err){
+  if(err){toast(err);return;}
+  try{sessionStorage.setItem('ma_name',GAME.myName);sessionStorage.setItem('ma_code',code);}catch(e){}
+  try{history.replaceState(null,'','#'+code);}catch(e){}
+  toast('เข้าร่วมห้องแล้ว');});}
+function backHome(){
+ if(!confirm('ออกจากเกมและกลับไปเมนูหลัก?'))return;
+ try{HOST.on=false;if(HOST.botTimer)clearTimeout(HOST.botTimer);}catch(e){}
+ NET.destroy();CLIENT.reset();GAME.mode=null;GAME.code=null;
+ try{history.replaceState(null,'',location.pathname);}catch(e){}
+ $('chipRoom').style.display='none';$('chipRace').style.display='none';$('chipPhase').style.display='none';
+ showScreen('sc-menu');}
+
+/* ============ BIND ============ */
+document.addEventListener('click',function(){AU.unlock();},{once:true});
+document.addEventListener('touchstart',function(){AU.unlock();},{once:true,passive:true});
+$('errClose').onclick=function(){$('errPanel').classList.remove('show');};
+$('pmMinus').onclick=function(){GAME.botCount=clamp(GAME.botCount-1,2,6);$('pmCount').textContent=GAME.botCount;AU.s('click');};
+$('pmPlus').onclick=function(){GAME.botCount=clamp(GAME.botCount+1,2,6);$('pmCount').textContent=GAME.botCount;AU.s('click');};
+$('btnSolo').onclick=guard(startSolo,'เริ่มเกมเดี่ยว:');
+$('btnCreate').onclick=guard(createRoom,'สร้างห้อง:');
+$('btnJoinForm').onclick=function(){var f=$('joinForm');f.style.display=(f.style.display==='flex')?'none':'flex';};
+$('btnJoin').onclick=guard(joinRoom,'เข้าร่วมห้อง:');
+$('btnStartGame').onclick=function(){AU.s('click');CLIENT.send({type:'startGame'});};
+$('btnLockPick').onclick=function(){if(!CLIENT.myPickTemp)return;AU.s('click');CLIENT.send({type:'select',ch:CLIENT.myPickTemp});};
+$('btnNextRace').onclick=function(){AU.s('click');CLIENT.myPickTemp=null;CLIENT.send({type:'nextRace'});};
+$('btnBackMenu').onclick=backHome;
+$('btnHome').onclick=backHome;
+$('btnRules').onclick=function(){$('rulesModal').classList.add('show');};
+$('btnCloseRules').onclick=function(){$('rulesModal').classList.remove('show');};
+$('rulesModal').onclick=function(e){if(e.target===this)this.classList.remove('show');};
+$('btnCodex').onclick=function(){var g=$('codexGrid');
+ if(!g._built){g._built=true;CHIDS.forEach(function(id){g.appendChild(UI.makeCard(id,false));});}
+ $('codexModal').classList.add('show');};
+$('btnCloseCodex').onclick=function(){$('codexModal').classList.remove('show');};
+$('codexModal').onclick=function(e){if(e.target===this)this.classList.remove('show');};
+$('btnMusic').onclick=function(){AU.unlock();AU.music=!AU.music;this.classList.toggle('off',!AU.music);
+ if(AU.music)AU.startMusic();else AU.stopMusic();};
+$('btnSfx').onclick=function(){AU.unlock();AU.sfx=!AU.sfx;this.classList.toggle('off',!AU.sfx);};
+$('btnCopyCode').onclick=function(){var c=$('lobbyCode').textContent;
+ try{navigator.clipboard.writeText(c);toast('คัดลอกรหัสห้องแล้ว');}catch(e){toast('รหัสห้อง: '+c);}};
+$('btnCopyLink').onclick=function(){var u=location.origin+location.pathname+'#'+$('lobbyCode').textContent;
+ try{navigator.clipboard.writeText(u);toast('คัดลอกลิงก์ชวนเล่นแล้ว');}catch(e){toast(u);}};
+$('inCode').addEventListener('input',function(){this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,5);});
+window.addEventListener('resize',function(){UI.fitBoard();});
+window.addEventListener('orientationchange',function(){setTimeout(function(){UI.fitBoard();},250);});
+try{if(window.ResizeObserver){new ResizeObserver(function(){UI.fitBoard();}).observe($('boardWrap'));}}catch(e){}
+
+/* ============ INIT ============ */
+(function init(){
+ try{var h=(location.hash||'').replace('#','').toUpperCase().slice(0,5);
+  if(h.length===5){$('inCode').value=h;$('joinForm').style.display='flex';toast('พบรหัสห้อง '+h+' จากลิงก์');}
+  var sn=sessionStorage.getItem('ma_name');if(sn)$('inName').value=sn;}catch(e){}
+ $('pmCount').textContent=GAME.botCount;
+ if(window.__PEER_FAIL)$('netHint').textContent='⚠️ โหลดระบบออนไลน์ไม่สำเร็จ — ยังเล่นโหมดสู้กับบอทได้ตามปกติ';
+ showScreen('sc-menu');
+})();
+})();
+</script>
+</body>
+</html>
